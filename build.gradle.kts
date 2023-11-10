@@ -55,6 +55,8 @@ dependencies {
 
     modImplementation(include("net.kyori:adventure-platform-fabric:5.9.0")!!)
 
+    modImplementation("me.lucko:fabric-permissions-api:0.2-SNAPSHOT")
+
     modImplementation("io.github.miniplaceholders:miniplaceholders-api:2.2.2")
     modImplementation("io.github.miniplaceholders:miniplaceholders-kotlin-ext:2.2.2")
 

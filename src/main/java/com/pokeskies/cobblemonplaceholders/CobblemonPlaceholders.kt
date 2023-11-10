@@ -1,5 +1,6 @@
 package com.pokeskies.cobblemonplaceholders
 
+import com.pokeskies.cobblemonplaceholders.commands.BaseCommands
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonGlobalPlaceholder
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
@@ -7,6 +8,7 @@ import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 import com.pokeskies.cobblemonplaceholders.utils.Utils
 import io.github.miniplaceholders.api.Expansion
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopped
@@ -38,9 +40,18 @@ class CobblemonPlaceholders : ModInitializer {
             registerPlaceholders()
             Utils.printInfo("Placeholders registered!")
         })
+        CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
+            BaseCommands().register(
+                dispatcher
+            )
+        }
         ServerLifecycleEvents.SERVER_STOPPED.register(ServerStopped { server: MinecraftServer? ->
             this.adventure = null
         })
+    }
+
+    fun reload() {
+
     }
 
     fun registerPlaceholders() {

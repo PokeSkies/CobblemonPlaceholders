@@ -2,16 +2,17 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.party
 
 import com.cobblemon.mod.common.Cobblemon
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
+import com.pokeskies.cobblemonplaceholders.utils.Utils
 import io.github.miniplaceholders.api.Expansion
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.tag.Tag
 import net.minecraft.server.network.ServerPlayerEntity
 import java.util.*
 
-class PartySpecies : CobblemonPlaceholder {
+class PartyCaughtBall : CobblemonPlaceholder {
     override fun register(builder: Expansion.Builder) {
         builder.filter(ServerPlayerEntity::class.java)
-            .audiencePlaceholder("party_species") { audience, queue, _ ->
+            .audiencePlaceholder("party_caughtball") { audience, queue, _ ->
                 if (queue.peek() == null)
                     return@audiencePlaceholder Tag.inserting(Component.text("Invalid party slot argument (1-6)!"))
 
@@ -23,7 +24,8 @@ class PartySpecies : CobblemonPlaceholder {
 
                 val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1) ?: return@audiencePlaceholder Tag.inserting(Component.text("Empty"))
 
-                return@audiencePlaceholder Tag.inserting(Component.text(pokemon.species.resourceIdentifier.path))
+                // TODO: Is there a better way to handle this?
+                return@audiencePlaceholder Tag.inserting(Component.text(Utils.titleCase(pokemon.caughtBall.name.path.replace("_", " "))))
             }
     }
 }

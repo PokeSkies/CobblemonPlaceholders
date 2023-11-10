@@ -8,9 +8,9 @@ import net.kyori.adventure.text.minimessage.Context
 import net.kyori.adventure.text.minimessage.tag.Tag
 import net.kyori.adventure.text.minimessage.tag.resolver.ArgumentQueue
 
-class SpeciesName : CobblemonGlobalPlaceholder {
+class SpeciesMaleRatio : CobblemonGlobalPlaceholder {
     override fun register(builder: Expansion.Builder) {
-        builder.globalPlaceholder("species_name", this)
+        builder.globalPlaceholder("species_maleratio", this)
     }
 
     override fun apply(queue: ArgumentQueue, ctx: Context): Tag {
@@ -19,6 +19,6 @@ class SpeciesName : CobblemonGlobalPlaceholder {
 
         val species = PokemonSpecies.getByName(queue.pop().value().lowercase()) ?: return Tag.inserting(Component.text("Provide a valid species argument!"))
 
-        return Tag.inserting(Component.text(species.name))
+        return Tag.inserting(Component.text(species.maleRatio))
     }
 }

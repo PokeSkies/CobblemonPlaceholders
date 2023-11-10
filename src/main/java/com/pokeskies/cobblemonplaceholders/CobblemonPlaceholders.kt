@@ -1,9 +1,10 @@
 package com.pokeskies.cobblemonplaceholders
 
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonAudiencePlaceholder
+import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonGlobalPlaceholder
-import com.pokeskies.cobblemonplaceholders.placeholders.types.party.PartySpecies
-import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesName
+import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
+import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
+import com.pokeskies.cobblemonplaceholders.utils.Utils
 import io.github.miniplaceholders.api.Expansion
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
@@ -33,7 +34,9 @@ class CobblemonPlaceholders : ModInitializer {
                 server!!
             )
             this.server = server
+            Utils.printInfo("Initializing mod and registering placeholders...")
             registerPlaceholders()
+            Utils.printInfo("Placeholders registered!")
         })
         ServerLifecycleEvents.SERVER_STOPPED.register(ServerStopped { server: MinecraftServer? ->
             this.adventure = null
@@ -43,13 +46,69 @@ class CobblemonPlaceholders : ModInitializer {
     fun registerPlaceholders() {
         val builder = Expansion.builder("cobblemon")
 
-        Stream.of<CobblemonGlobalPlaceholder>(
+        Stream.of(
             SpeciesName(),
+            SpeciesIDNational(),
+            SpeciesTypes(),
+            SpeciesCatchRate(),
+            SpeciesAbilities(),
+            SpeciesEggGroups(),
+            SpeciesMaleRatio(),
+            SpeciesBaseStatsHP(),
+            SpeciesBaseStatsAttack(),
+            SpeciesBaseStatsDefence(),
+            SpeciesBaseStatsSpecialAttack(),
+            SpeciesBaseStatsSpecialDefence(),
+            SpeciesBaseStatsSpeed(),
         ).forEach { placeholder: CobblemonGlobalPlaceholder -> placeholder.register(builder) }
 
-        Stream.of<CobblemonAudiencePlaceholder>(
+        Stream.of(
+            PartyName(),
             PartySpecies(),
-        ).forEach { placeholder: CobblemonAudiencePlaceholder -> placeholder.register(builder) }
+            PartySpeciesID(),
+            PartyNickname(),
+            PartyForm(),
+            PartyLevel(),
+            PartyExperience(),
+            PartyShiny(),
+            PartyHeldItem(),
+            PartyHeldItemID(),
+            PartyFriendship(),
+            PartyAbility(),
+            PartyNature(),
+            PartyGender(),
+            PartyCaughtBall(),
+            PartyCaughtBallID(),
+            PartyDynamax(),
+            PartyGigantamax(),
+            PartyTeratype(),
+            PartyTradable(),
+            PartyMoveset(),
+            PartyStatsHP(),
+            PartyStatsAttack(),
+            PartyStatsDefence(),
+            PartyStatsSpecialAttack(),
+            PartyStatsSpecialDefence(),
+            PartyStatsSpeed(),
+            PartyIVsHP(),
+            PartyIVsAttack(),
+            PartyIVsDefence(),
+            PartyIVsSpecialAttack(),
+            PartyIVsSpecialDefence(),
+            PartyIVsSpeed(),
+            PartyIVsTotal(),
+            PartyIVsPercent(),
+            PartyEVsHP(),
+            PartyEVsAttack(),
+            PartyEVsDefence(),
+            PartyEVsSpecialAttack(),
+            PartyEVsSpecialDefence(),
+            PartyEVsSpeed(),
+            PartyEVsTotal(),
+            PartyEVsPercent(),
+            PartyAspects(),
+            PartyAspectsHas(),
+        ).forEach { placeholder: CobblemonPlaceholder -> placeholder.register(builder) }
 
         builder.build().register()
     }

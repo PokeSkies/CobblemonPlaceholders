@@ -8,10 +8,10 @@ import net.kyori.adventure.text.minimessage.tag.Tag
 import net.minecraft.server.network.ServerPlayerEntity
 import java.util.*
 
-class PartySpecies : CobblemonPlaceholder {
+class PartyName : CobblemonPlaceholder {
     override fun register(builder: Expansion.Builder) {
         builder.filter(ServerPlayerEntity::class.java)
-            .audiencePlaceholder("party_species") { audience, queue, _ ->
+            .audiencePlaceholder("party_name") { audience, queue, _ ->
                 if (queue.peek() == null)
                     return@audiencePlaceholder Tag.inserting(Component.text("Invalid party slot argument (1-6)!"))
 
@@ -23,7 +23,7 @@ class PartySpecies : CobblemonPlaceholder {
 
                 val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1) ?: return@audiencePlaceholder Tag.inserting(Component.text("Empty"))
 
-                return@audiencePlaceholder Tag.inserting(Component.text(pokemon.species.resourceIdentifier.path))
+                return@audiencePlaceholder Tag.inserting(Component.text(pokemon.species.name))
             }
     }
 }

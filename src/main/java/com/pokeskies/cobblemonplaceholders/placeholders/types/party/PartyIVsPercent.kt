@@ -3,6 +3,8 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.party
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.pokemon.IVs
+import com.google.gson.annotations.SerializedName
+import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.Utils
 import io.github.miniplaceholders.api.Expansion
@@ -16,22 +18,43 @@ class PartyIVsPercent : CobblemonPlaceholder {
         builder.filter(ServerPlayerEntity::class.java)
             .audiencePlaceholder("party_ivs_percent") { audience, queue, _ ->
                 if (queue.peek() == null)
-                    return@audiencePlaceholder Tag.inserting(Component.text("Invalid party slot argument (1-6)!"))
+                    return@audiencePlaceholder Tag.inserting(Component.text(
+                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+                    ))
 
                 val player = audience as ServerPlayerEntity
 
                 val slot: OptionalInt = queue.pop().asInt()
                 if (slot.isEmpty || slot.asInt !in 6 downTo 1)
-                    return@audiencePlaceholder Tag.inserting(Component.text("Invalid party slot argument (1-6)!"))
+                    return@audiencePlaceholder Tag.inserting(Component.text(
+                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+                    ))
 
-                val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1) ?: return@audiencePlaceholder Tag.inserting(Component.text("Empty"))
+                val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1) 
+                    ?: return@audiencePlaceholder Tag.inserting(Component.text(
+                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
+                    ))
 
-                val sum = Stats.values().toList().stream().mapToInt { pokemon.ivs[it] ?: 0 }.sum()
+                val sum = Stats.PERMANENT.stream().mapToInt { pokemon.ivs[it] ?: 0 }.sum()
                 if (sum == 0) return@audiencePlaceholder Tag.inserting(Component.text(sum))
 
                 return@audiencePlaceholder Tag.inserting(Component.text(
-                    Utils.parseDouble((IVs.MAX_VALUE.toDouble() / sum) * 100)
+                    Utils.parseDouble((sum / (IVs.MAX_VALUE.toDouble() * Stats.PERMANENT.size)) * 100,
+                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.ivsPercent.fractionMin,
+                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.ivsPercent.fractionMax
+                    )
                 ))
             }
+    }
+
+    class Options(
+        @SerializedName("fraction_min")
+        val fractionMin: Int = 0,
+        @SerializedName("fraction_max")
+        val fractionMax: Int = 0
+    ) {
+        override fun toString(): String {
+            return "Options(fractionMin=$fractionMin, fractionMax=$fractionMax)"
+        }
     }
 }

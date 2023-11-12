@@ -1,0 +1,46 @@
+{
+  "placeholders": {
+    "party": {
+      "invalid_slot": "Invalid party slot argument (1-6)!",
+      "empty_slot": "Empty Slot",
+      "aspects": {
+        "invalid_slot": "Invalid aspect slot argument (1+)!",
+        "empty_list": "No Aspects",
+        "empty_slot": "Empty Aspect"
+      },
+      "aspects_has": {
+        "invalid_aspect": "Invalid aspect argument!"
+      },
+      "moveset": {
+        "invalid_slot": "Invalid move slot argument (1-4)!",
+        "empty_list": "No Moves",
+        "empty_slot": "Empty Move"
+      },
+      "ivs_percent": {
+        "fraction_min": 0,
+        "fraction_max": 0
+      },
+      "evs_percent": {
+        "fraction_min": 0,
+        "fraction_max": 0
+      },
+      "nickname": {
+        "species_if_empty": true
+      }
+    },
+    "species": {
+      "invalid_species": "Provide a valid species argument!",
+      "abilities": {
+        "invalid_slot": "Invalid ability slot argument (1-2,H)!",
+        "empty_slot": "Empty Ability"
+      },
+      "egggroups": {
+        "empty_list": "No Egg Groups"
+      },
+      "types": {
+        "invalid_slot": "Invalid type slot argument (1-2)!",
+        "empty_slot": "No Type"
+      }
+    }
+  }
+}

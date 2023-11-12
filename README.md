@@ -1,13 +1,14 @@
 # CobblemonPlaceholders
 <img height="50" src="https://camo.githubusercontent.com/a94064bebbf15dfed1fddf70437ea2ac3521ce55ac85650e35137db9de12979d/68747470733a2f2f692e696d6775722e636f6d2f6331444839564c2e706e67" alt="Requires Fabric Kotlin"/>
 
-A Fabric (1.20.1) server-sided MiniPlaceholders expansion for the Cobblemon mod! Includes many useful placeholders for Pokemon species and player's Party Pokemon.
+A Fabric (1.20.1) server-sided MiniPlaceholders expansion for the Cobblemon mod! Includes many useful placeholders for Pokemon species and player Party Pokemon.
 
 More information on configuration can be found on the [Wiki](https://github.com/PokeSkies/CobblemonPlaceholders/wiki)!
 
 ## Features
 - 50+ Cobblemon Placeholders
 - Uses MiniPlaceholders, which has many built-in placeholders and extensions
+- Extensive configuration for placeholder returns
 
 ## Installation
 1. Download the latest version of the mod from the Releases tab.
@@ -18,7 +19,7 @@ More information on configuration can be found on the [Wiki](https://github.com/
     - [Cobblemon](https://modrinth.com/mod/cobblemon)
 3. Install the mod and dependencies into your server's `mods` folder.
 4. Configure the config file in the `./config/cobblemonplaceholders/config.json` file.
-5. Use the placeholders! See Placeholders for more information.
+5. Use the placeholders! See [Placeholders](https://github.com/PokeSkies/CobblemonPlaceholders/wiki/Placeholders) for more information.
 
 ## Commands/Permissions
 | Command                       | Description                                        | Permission                           |
@@ -26,7 +27,6 @@ More information on configuration can be found on the [Wiki](https://github.com/
 | /cobblemonplaceholders reload | Reload the Mod                                     | cobblemonplaceholders.command.reload |
 
 ## Planned Features
-- Configuration system for defaulted outputs (like "Empty")
 - List separator argument options
 - More Placeholders!
     - **Please submit suggestions!**

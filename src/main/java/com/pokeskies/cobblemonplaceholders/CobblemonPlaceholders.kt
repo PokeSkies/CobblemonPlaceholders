@@ -1,6 +1,7 @@
 package com.pokeskies.cobblemonplaceholders
 
 import com.pokeskies.cobblemonplaceholders.commands.BaseCommands
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
 import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonGlobalPlaceholder
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
@@ -12,10 +13,12 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopped
+import net.fabricmc.loader.api.FabricLoader
 import net.kyori.adventure.platform.fabric.FabricServerAudiences
 import net.minecraft.server.MinecraftServer
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import java.io.File
 import java.util.stream.Stream
 
 
@@ -25,11 +28,17 @@ class CobblemonPlaceholders : ModInitializer {
         val LOGGER: Logger = LogManager.getLogger("cobblemonplaceholders")
     }
 
+    private lateinit var configDir: File
+    lateinit var configManager: ConfigManager
+
     var adventure: FabricServerAudiences? = null
     var server: MinecraftServer? = null
 
     override fun onInitialize() {
         INSTANCE = this
+
+        this.configDir = File(FabricLoader.getInstance().configDirectory, "cobblemonplaceholders")
+        this.configManager = ConfigManager(configDir)
 
         ServerLifecycleEvents.SERVER_STARTING.register(ServerStarting { server: MinecraftServer? ->
             this.adventure = FabricServerAudiences.of(
@@ -51,7 +60,7 @@ class CobblemonPlaceholders : ModInitializer {
     }
 
     fun reload() {
-
+        this.configManager.reload()
     }
 
     fun registerPlaceholders() {

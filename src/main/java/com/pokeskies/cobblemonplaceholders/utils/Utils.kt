@@ -6,16 +6,12 @@ import net.minecraft.text.Text
 import java.text.DecimalFormat
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.math.min
 
 
 object Utils {
     private val miniMessage: MiniMessage = MiniMessage.miniMessage()
     private val decimalFormatter: DecimalFormat = DecimalFormat()
-
-    init {
-        decimalFormatter.minimumFractionDigits = 0
-        decimalFormatter.maximumFractionDigits = 0
-    }
 
     fun deserializeText(text: String): Text {
         return CobblemonPlaceholders.INSTANCE.adventure!!.toNative(miniMessage.deserialize(text))
@@ -39,7 +35,9 @@ object Utils {
         return matcher.appendTail(buffer).toString()
     }
 
-    fun parseDouble(double: Double): String {
+    fun parseDouble(double: Double, minDigits: Int, maxDigits: Int): String {
+        decimalFormatter.minimumFractionDigits = minDigits
+        decimalFormatter.maximumFractionDigits = maxDigits
         return decimalFormatter.format(double)
     }
 }

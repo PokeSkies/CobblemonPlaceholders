@@ -11,7 +11,7 @@ More information on configuration can be found on the [Wiki](https://github.com/
 - Extensive configuration for placeholder returns
 
 ## Installation
-1. Download the latest version of the mod from the Releases tab.
+1. Download the latest version of the mod from [Modrinth](https://modrinth.com/mod/cobblemonplaceholders).
 2. Download all required dependencies:
     - [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
     - [Fabric Permissions API](https://github.com/PokeSkies/fabric-permissions-api)

@@ -1,0 +1,58 @@
+%pixelmon_version% 	The current version of Pixelmon that the server is running. 	
+%pixelmon_dexsize% 	The size of the national dex. 	Excludes MissingNo.
+%pixelmon_dexsize_gen_[1-8]% 	The size of the specified generation's dex. 	
+
+%pixelmon_trainer_highest_level% 	The highest level in the player's party. 	
+%pixelmon_trainer_lowest_level% 	The lowest level in the player's party. 	
+%pixelmon_trainer_average_level% 	The average level of the player's party. 	
+%pixelmon_trainer_wins% 	Amount of times the player has won battles against other players. 	
+%pixelmon_trainer_losses% 	Amount of times the player has lost battles against other players. 	
+%pixelmon_trainer_wl_ratio% 	The player's win/loss ratio in decimal form. 	No extra formatting.
+%pixelmon_trainer_wl_ratio_rounded% 	The player's win/loss ratio in 0.00 format. 	
+%pixelmon_trainer_dex_caught% 	The amount of different species that the player has caught. 	
+%pixelmon_trainer_dex_caught_[pokemonName/dexNumber]% 	Returns "true" if the player has caught the specified pokemon. 	Otherwise, returns "false".
+%pixelmon_trainer_dex_caught_gen_[1-8]% 	The amount of different species that the player has caught in the specified generation. 	
+%pixelmon_trainer_dex_seen% 	The amount of different species that the player has seen. 	
+%pixelmon_trainer_dex_seen_[pokemonName/dexNumber]% 	Returns "true" if the player has seen the specified pokemon. 	Otherwise, returns "false".
+%pixelmon_trainer_dex_seen_gen_[1-8]% 	The amount of different species that the player has seen in the specified generation. 	
+%pixelmon_trainer_dex_percent_caught% 	The percent of the national dex the player has caught in decimal form. 	Ignores MissingNo. No extra formatting.
+%pixelmon_trainer_dex_percent_caught_rounded% 	The percent of the national dex the player has caught in 0.00 format. 	
+%pixelmon_trainer_dex_percent_caught_int% 	The percent of the national dex the player has caught as an integer. 	
+%pixelmon_trainer_dex_percent_caught_gen_[1-8]% 	The percent of the specified generation's dex the player has caught in decimal form. 	No extra formatting.
+%pixelmon_trainer_dex_percent_caught_gen_[1-8]_rounded% 	The percent of the specified generation's dex the player has caught in 0.00 format. 	
+%pixelmon_trainer_dex_percent_caught_gen_[1-8]_int% 	The percent of the specified generation's dex the player has caught as an integer. 	
+%pixelmon_trainer_dex_percent_seen% 	The percent of the national dex the player has seen in decimal form. 	Ignores MissingNo. No extra formatting.
+%pixelmon_trainer_dex_percent_seen_rounded% 	The percent of the national dex the player has seen in 0.00 format. 	
+%pixelmon_trainer_dex_percent_seen_int% 	The percent of the national dex the player has seen as an integer. 	
+%pixelmon_trainer_dex_percent_seen_gen_[1-8]% 	The percent of the specified generation's dex the player has seen in decimal form. 	No extra formatting.
+%pixelmon_trainer_dex_percent_seen_gen_[1-8]_rounded% 	The percent of the specified generation's dex the player has seen in 0.00 format. 	
+%pixelmon_trainer_dex_percent_seen_gen_[1-8]_int% 	The percent of the specified generation's dex the player has seen as an integer. 	
+
+
+%pixelmon_party_has_[pokemonName/dexNumber]<:formName><:paletteName>% 	Returns true if the target's party includes the specified pokemon. 	Otherwise, returns false.
+%pixelmon_party_[1-6]_nickname_formatted% 	Nickname of the pokemon. 	If no nickname, returns the species name formatted with the form name.
+%pixelmon_party_[1-6]_exp_to_level% 	Amount of experience needed to reach the next level. 	
+%pixelmon_party_[1-6]_hp% 	The current amount of health that the pokemon has. 	
+%pixelmon_party_[1-6]_maxhp% 	The maximum amount of health that the pokemon can currently have. 	
+%pixelmon_party_[1-6]_move_count% 	The amount of moves the pokemon has. 	
+%pixelmon_party_[1-6]_moves_unlocalized% 	All moves the pokemon has as a list. Removes all spaces from move names. 	See Lists for more information on lists.
+%pixelmon_party_[1-6]_ability_unlocalized% 	The ability of the pokemon without spaces. 	
+%pixelmon_party_[1-6]_ability_isHA% 	Returns true if the pokemon has it's hidden ability. 	Otherwise, returns false.
+%pixelmon_party_[1-6]_ball_unlocalized% 	The pokeball the pokemon was caught in without spaces. 	
+%pixelmon_party_[1-6]_nature_base% 	The base nature of the pokemon before mints. 	
+%pixelmon_party_[1-6]_nature_minted% 	Returns "true" if the pokemon has been minted. 	Otherwise, returns "false".
+%pixelmon_party_[1-6]_nature_mint% 	The mint nature of the pokemon. 	Returns "None" if there is not one.
+%pixelmon_party_[1-6]_form% 	The localized name of the form of the pokemon. 	Returns the parsed lang key of the form.
+%pixelmon_party_[1-6]_form_unlocalized% 	The internal form name of the pokemon. 	Returns a blank string if there is no form.
+%pixelmon_party_[1-6]_growth% 	The growth of the pokemon. 	
+%pixelmon_party_[1-6]_OT% 	The OT of the pokemon. 	
+%pixelmon_party_[1-6]_OT_UUID% 	The OT of the pokemon's UUID. 	
+%pixelmon_party_[1-6]_OT_check% 	Returns "true" if the player parsing the placeholder is the OT of the pokemon. 	Otherwise, returns "false".
+
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_gen%
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_abilities_unlocalized% 	A list of the pokemon's abilities, but the abilities do not have spaces. 	See Lists for more information on lists.%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_isLegend% 	Returns "true" if the species is legendary. 	Otherwise, returns "false". All mythical pokemon are legendaries.
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_isMythical% 	Returns "true" if the species is mythical. 	Otherwise, returns "false".
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_isUB% 	Returns "true" if the species is an Ultra Beast. 	Otherwise, returns "false".
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_isLegendOrUB% 	Returns "true" if the species is legendary, mythical, or an Ultra Beast. 	Otherwise, returns "false".
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_type_isMono% 	Returns "true" if the pokemon is monotype. 	Otherwise, returns "false".
+%pixelmon_pokedex_[pokemonName/dexNumber]<:formName>_type_has_[type]% 	Returns "true" if the pokemon has the specified type. 	Otherwise, returns "false".

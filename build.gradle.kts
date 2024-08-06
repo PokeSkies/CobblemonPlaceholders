@@ -84,6 +84,10 @@ tasks.processResources {
     }
 }
 
+tasks.remapJar {
+    archiveFileName.set("${project.name}-fabric-$minecraftVersion-${project.version}.jar")
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     options.release.set(21)

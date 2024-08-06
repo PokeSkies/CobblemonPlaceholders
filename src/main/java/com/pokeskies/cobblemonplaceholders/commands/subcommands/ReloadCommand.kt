@@ -6,19 +6,19 @@ import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
 import com.pokeskies.cobblemonplaceholders.utils.SubCommand
 import com.pokeskies.cobblemonplaceholders.utils.Utils
 import me.lucko.fabric.api.permissions.v0.Permissions
-import net.minecraft.server.command.CommandManager
-import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands
 
 class ReloadCommand : SubCommand {
-    override fun build(): LiteralCommandNode<ServerCommandSource> {
-        return CommandManager.literal("reload")
+    override fun build(): LiteralCommandNode<CommandSourceStack> {
+        return Commands.literal("reload")
             .requires(Permissions.require("cobblemonplaceholders.command.reload", 4))
             .executes(Companion::reload)
             .build()
     }
 
     companion object {
-        fun reload(ctx: CommandContext<ServerCommandSource>): Int {
+        fun reload(ctx: CommandContext<CommandSourceStack>): Int {
             CobblemonPlaceholders.INSTANCE.reload()
             ctx.source.sendMessage(Utils.deserializeText("<green>Reloaded CobblemonPlaceholders"))
             return 1

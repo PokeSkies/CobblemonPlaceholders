@@ -7,19 +7,19 @@ import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
 import io.github.miniplaceholders.api.Expansion
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.tag.Tag
-import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.level.ServerPlayer
 import java.util.*
 
 class PartyIVsAttack : CobblemonPlaceholder {
     override fun register(builder: Expansion.Builder) {
-        builder.filter(ServerPlayerEntity::class.java)
+        builder.filter(ServerPlayer::class.java)
             .audiencePlaceholder("party_ivs_atk") { audience, queue, _ ->
                 if (queue.peek() == null)
                     return@audiencePlaceholder Tag.inserting(Component.text(
                         CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
                     ))
 
-                val player = audience as ServerPlayerEntity
+                val player = audience as ServerPlayer
 
                 val slot: OptionalInt = queue.pop().asInt()
                 if (slot.isEmpty || slot.asInt !in 6 downTo 1)

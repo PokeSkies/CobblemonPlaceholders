@@ -3,29 +3,24 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonGlobalPlaceholder
-import io.github.miniplaceholders.api.Expansion
+import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
+import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.Context
-import net.kyori.adventure.text.minimessage.tag.Tag
-import net.kyori.adventure.text.minimessage.tag.resolver.ArgumentQueue
 
-class SpeciesBaseStatsHP : CobblemonGlobalPlaceholder {
-    override fun register(builder: Expansion.Builder) {
-        builder.globalPlaceholder("species_basestats_hp", this)
-    }
-
-    override fun apply(queue: ArgumentQueue, ctx: Context): Tag {
-        if (queue.peek() == null)
-            return Tag.inserting(Component.text(
+class SpeciesBaseStatsHP : ServerPlaceholder {
+    override fun handle(args: List<String>): GenericResult {
+        if (args.isEmpty())
+            return GenericResult.invalid(Component.text(
                 CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
             ))
 
-        val species = PokemonSpecies.getByName(queue.pop().value().lowercase()) 
-            ?: return Tag.inserting(Component.text(
+        val species = PokemonSpecies.getByName(args[0].lowercase())
+            ?: return GenericResult.invalid(Component.text(
                 CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
             ))
-        
-        return Tag.inserting(Component.text(species.baseStats[Stats.HP] ?: 0))
+
+        return GenericResult.valid(Component.text(species.baseStats[Stats.HP] ?: 0))
     }
+
+    override fun id(): String = "species_basestats_hp"
 }

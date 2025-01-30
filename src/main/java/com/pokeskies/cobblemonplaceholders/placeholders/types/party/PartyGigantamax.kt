@@ -2,36 +2,31 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.party
 
 import com.cobblemon.mod.common.Cobblemon
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
-import io.github.miniplaceholders.api.Expansion
+import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
+import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.tag.Tag
 import net.minecraft.server.level.ServerPlayer
-import java.util.*
 
-class PartyGigantamax : CobblemonPlaceholder {
-    override fun register(builder: Expansion.Builder) {
-        builder.filter(ServerPlayer::class.java)
-            .audiencePlaceholder("party_gmax") { audience, queue, _ ->
-                if (queue.peek() == null)
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
-                    ))
+class PartyGigantamax : PlayerPlaceholder {
+    override fun handle(player: ServerPlayer, args: List<String>): GenericResult {
+        if (args.isEmpty())
+            return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+            ))
 
-                val player = audience as ServerPlayer
+        val slot: Int? = args.getOrNull(0)?.toIntOrNull()
+        if (slot == null || slot !in 6 downTo 1)
+            return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+            ))
 
-                val slot: OptionalInt = queue.pop().asInt()
-                if (slot.isEmpty || slot.asInt !in 6 downTo 1)
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
-                    ))
+        val pokemon = Cobblemon.storage.getParty(player).get(slot - 1)
+            ?: return GenericResult.valid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
+            ))
 
-                val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1) 
-                    ?: return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
-                    ))
-
-                return@audiencePlaceholder Tag.inserting(Component.text(pokemon.gmaxFactor))
-            }
+        return GenericResult.valid(Component.text(pokemon.gmaxFactor))
     }
+
+    override fun id(): String = "party_gmax"
 }

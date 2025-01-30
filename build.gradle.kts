@@ -74,6 +74,8 @@ dependencies {
     modImplementation("io.github.miniplaceholders:miniplaceholders-api:2.2.3")
     modImplementation("io.github.miniplaceholders:miniplaceholders-kotlin-ext:2.2.3")
 
+    modImplementation("eu.pb4:placeholder-api:2.4.1+1.21")
+
     modImplementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }
 

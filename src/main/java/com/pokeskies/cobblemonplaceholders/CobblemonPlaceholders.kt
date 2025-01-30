@@ -2,17 +2,15 @@ package com.pokeskies.cobblemonplaceholders
 
 import com.pokeskies.cobblemonplaceholders.commands.BaseCommands
 import com.pokeskies.cobblemonplaceholders.config.ConfigManager
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonGlobalPlaceholder
+import com.pokeskies.cobblemonplaceholders.placeholders.services.IPlaceholderService
+import com.pokeskies.cobblemonplaceholders.placeholders.services.PlaceholderServices
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 import com.pokeskies.cobblemonplaceholders.utils.Utils
-import io.github.miniplaceholders.api.Expansion
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopped
 import net.fabricmc.loader.api.FabricLoader
 import net.kyori.adventure.platform.fabric.FabricServerAudiences
 import net.minecraft.server.MinecraftServer
@@ -31,8 +29,10 @@ class CobblemonPlaceholders : ModInitializer {
     private lateinit var configDir: File
     lateinit var configManager: ConfigManager
 
-    var adventure: FabricServerAudiences? = null
-    var server: MinecraftServer? = null
+    lateinit var adventure: FabricServerAudiences
+    lateinit var server: MinecraftServer
+
+    var placeholderServices: List<IPlaceholderService> = emptyList()
 
     override fun onInitialize() {
         INSTANCE = this
@@ -46,26 +46,23 @@ class CobblemonPlaceholders : ModInitializer {
             )
             this.server = server
             Utils.printInfo("Initializing mod and registering placeholders...")
+            this.placeholderServices = PlaceholderServices.getActiveServices()
             registerPlaceholders()
-            Utils.printInfo("Placeholders registered!")
+            Utils.printInfo("All placeholders now registered!")
         })
         CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
             BaseCommands().register(
                 dispatcher
             )
         }
-        ServerLifecycleEvents.SERVER_STOPPED.register(ServerStopped { server: MinecraftServer? ->
-            this.adventure = null
-        })
     }
 
     fun reload() {
         this.configManager.reload()
     }
 
-    fun registerPlaceholders() {
-        val builder = Expansion.builder("cobblemon")
-
+    private fun registerPlaceholders() {
+        println("Active services: $placeholderServices")
         Stream.of(
             SpeciesName(),
             SpeciesIDNational(),
@@ -80,7 +77,7 @@ class CobblemonPlaceholders : ModInitializer {
             SpeciesBaseStatsSpecialAttack(),
             SpeciesBaseStatsSpecialDefence(),
             SpeciesBaseStatsSpeed(),
-        ).forEach { placeholder: CobblemonGlobalPlaceholder -> placeholder.register(builder) }
+        ).forEach { placeholder -> placeholderServices.forEach { it.registerServer(placeholder) } }
 
         Stream.of(
             PartyName(),
@@ -128,8 +125,8 @@ class CobblemonPlaceholders : ModInitializer {
             PartyEVsPercent(),
             PartyAspects(),
             PartyAspectsHas(),
-        ).forEach { placeholder: CobblemonPlaceholder -> placeholder.register(builder) }
+        ).forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
 
-        builder.build().register()
+        placeholderServices.forEach { it.finalizeRegister() }
     }
 }

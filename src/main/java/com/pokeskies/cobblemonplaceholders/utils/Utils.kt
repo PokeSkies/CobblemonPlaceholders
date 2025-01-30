@@ -12,7 +12,7 @@ object Utils {
     private val decimalFormatter: DecimalFormat = DecimalFormat()
 
     fun deserializeText(text: String): Component {
-        return CobblemonPlaceholders.INSTANCE.adventure!!.toNative(miniMessage.deserialize(text))
+        return CobblemonPlaceholders.INSTANCE.adventure.toNative(miniMessage.deserialize(text))
     }
 
     fun printError(message: String) {

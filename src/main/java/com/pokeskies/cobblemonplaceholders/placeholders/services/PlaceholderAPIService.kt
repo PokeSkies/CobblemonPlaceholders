@@ -17,7 +17,7 @@ class PlaceholderAPIService: IPlaceholderService {
     override fun registerPlayer(placeholder: PlayerPlaceholder) {
         Placeholders.register(ResourceLocation.fromNamespaceAndPath("cobblemon", placeholder.id())) { ctx, arg ->
             val player = ctx.player ?: return@register PlaceholderResult.invalid("NO PLAYER")
-            val result = placeholder.handle(player, if (arg != null) listOf(arg) else emptyList())
+            val result = placeholder.handle(player, arg?.split(":") ?: emptyList())
             return@register if (result.isSuccessful) {
                 PlaceholderResult.value(CobblemonPlaceholders.INSTANCE.adventure.toNative(result.result))
             } else {
@@ -28,7 +28,7 @@ class PlaceholderAPIService: IPlaceholderService {
 
     override fun registerServer(placeholder: ServerPlaceholder) {
         Placeholders.register(ResourceLocation.fromNamespaceAndPath("cobblemon", placeholder.id())) { ctx, arg ->
-            val result = placeholder.handle(if (arg != null) listOf(arg) else emptyList())
+            val result = placeholder.handle(arg?.split(":") ?: emptyList())
             return@register if (result.isSuccessful) {
                 PlaceholderResult.value(CobblemonPlaceholders.INSTANCE.adventure.toNative(result.result))
             } else {

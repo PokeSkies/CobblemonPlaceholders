@@ -2,6 +2,8 @@ package com.pokeskies.cobblemonplaceholders.config
 
 import com.google.gson.annotations.SerializedName
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
+import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPercentCaught
+import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPercentSeen
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesAbilities
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesEggGroups
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesTypes
@@ -11,7 +13,8 @@ class MainConfig(
 ) {
     class PlaceholderOptions(
         val party: Party = Party(),
-        val species: Species = Species()
+        val species: Species = Species(),
+        val pokedex: Pokedex = Pokedex()
     ) {
         class Party(
             @SerializedName("invalid_slot")
@@ -47,8 +50,24 @@ class MainConfig(
             }
         }
 
+        class Pokedex(
+            @SerializedName("include_unimplemented")
+            val includeUnimplemented: Boolean = false,
+            @SerializedName("dex_seen_percent")
+            val dexSeenPercent: PokedexPercentSeen.Options = PokedexPercentSeen.Options(),
+            @SerializedName("dex_caught_percent")
+            val dexCaughtPercent: PokedexPercentCaught.Options = PokedexPercentCaught.Options(),
+            @SerializedName("invalid_species")
+            val invalidSpecies: String = "Provide a valid species argument!",
+
+        ) {
+            override fun toString(): String {
+                return "Pokedex(includeUnimplemented=$includeUnimplemented, dexSeenPercent=$dexSeenPercent, dexCaughtPercent=$dexCaughtPercent, invalidSpecies='$invalidSpecies')"
+            }
+        }
+
         override fun toString(): String {
-            return "PlaceholderOptions(party=$party, species=$species)"
+            return "PlaceholderOptions(party=$party, species=$species, pokedex=$pokedex)"
         }
     }
 

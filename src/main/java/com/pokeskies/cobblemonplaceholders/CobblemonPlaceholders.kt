@@ -5,6 +5,7 @@ import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.services.IPlaceholderService
 import com.pokeskies.cobblemonplaceholders.placeholders.services.PlaceholderServices
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
+import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 import com.pokeskies.cobblemonplaceholders.utils.Utils
 import net.fabricmc.api.ModInitializer
@@ -77,6 +78,7 @@ class CobblemonPlaceholders : ModInitializer {
             SpeciesBaseStatsSpecialAttack(),
             SpeciesBaseStatsSpecialDefence(),
             SpeciesBaseStatsSpeed(),
+            PokedexTotal(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerServer(placeholder) } }
 
         Stream.of(
@@ -125,6 +127,12 @@ class CobblemonPlaceholders : ModInitializer {
             PartyEVsPercent(),
             PartyAspects(),
             PartyAspectsHas(),
+            PokedexAmountSeen(),
+            PokedexAmountCaught(),
+            PokedexPercentSeen(),
+            PokedexPercentCaught(),
+            PokedexSpeciesSeen(),
+            PokedexSpeciesCaught(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
 
         placeholderServices.forEach { it.finalizeRegister() }

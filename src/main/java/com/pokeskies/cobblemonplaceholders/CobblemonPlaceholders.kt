@@ -133,6 +133,8 @@ class CobblemonPlaceholders : ModInitializer {
             PokedexPercentCaught(),
             PokedexSpeciesSeen(),
             PokedexSpeciesCaught(),
+            PokedexShiniesCaught(),
+            PokedexShiniesSeen(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
 
         placeholderServices.forEach { it.finalizeRegister() }

@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokedex.PokedexEntryProgress
 import com.cobblemon.mod.common.api.pokedex.PokedexManager
+import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
 import net.minecraft.resources.ResourceLocation
@@ -30,6 +31,14 @@ object DexUtils {
         if (Dexes.dexEntryMap.containsKey(dexId).not()) return null
         return Dexes.dexEntryMap[dexId]!!.getEntries().associateBy { it.id }.entries
             .map { it.value }
+            .count { manager.getKnowledgeForSpecies(it.speciesId).ordinal >= knowledge.ordinal }
+    }
+
+    fun getShinyDexProgress(manager: PokedexManager, dexId: ResourceLocation, knowledge: PokedexEntryProgress): Int? {
+        if (Dexes.dexEntryMap.containsKey(dexId).not()) return null
+        return Dexes.dexEntryMap[dexId]!!.getEntries().associateBy { it.id }.entries
+            .map { it.value }
+            .filter { it.conditionAspects.contains("shiny") }
             .count { manager.getKnowledgeForSpecies(it.speciesId).ordinal >= knowledge.ordinal }
     }
 }

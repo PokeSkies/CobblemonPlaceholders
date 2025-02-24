@@ -3,18 +3,18 @@ package com.pokeskies.cobblemonplaceholders.commands
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.tree.LiteralCommandNode
 import com.pokeskies.cobblemonplaceholders.commands.subcommands.ReloadCommand
-import net.minecraft.server.command.CommandManager
-import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands
 
 class BaseCommands {
     private val aliases = listOf("cobblemonplaceholders")
 
-    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
-        val rootCommands: List<LiteralCommandNode<ServerCommandSource>> = aliases.map {
-            CommandManager.literal(it).build()
+    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+        val rootCommands: List<LiteralCommandNode<CommandSourceStack>> = aliases.map {
+            Commands.literal(it).build()
         }
 
-        val subCommands: List<LiteralCommandNode<ServerCommandSource>> = listOf(
+        val subCommands: List<LiteralCommandNode<CommandSourceStack>> = listOf(
             ReloadCommand().build(),
         )
 

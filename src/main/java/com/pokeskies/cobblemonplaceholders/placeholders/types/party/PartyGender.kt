@@ -2,37 +2,32 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.party
 
 import com.cobblemon.mod.common.Cobblemon
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
+import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
+import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.Utils
-import io.github.miniplaceholders.api.Expansion
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.tag.Tag
-import net.minecraft.server.network.ServerPlayerEntity
-import java.util.*
+import net.minecraft.server.level.ServerPlayer
 
-class PartyGender : CobblemonPlaceholder {
-    override fun register(builder: Expansion.Builder) {
-        builder.filter(ServerPlayerEntity::class.java)
-            .audiencePlaceholder("party_gender") { audience, queue, _ ->
-                if (queue.peek() == null)
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
-                    ))
+class PartyGender : PlayerPlaceholder {
+    override fun handle(player: ServerPlayer, args: List<String>): GenericResult {
+        if (args.isEmpty())
+            return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+            ))
 
-                val player = audience as ServerPlayerEntity
+        val slot: Int? = args.getOrNull(0)?.toIntOrNull()
+        if (slot == null || slot !in 6 downTo 1)
+            return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+            ))
 
-                val slot: OptionalInt = queue.pop().asInt()
-                if (slot.isEmpty || slot.asInt !in 6 downTo 1)
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
-                    ))
+        val pokemon = Cobblemon.storage.getParty(player).get(slot - 1)
+            ?: return GenericResult.valid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
+            ))
 
-                val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1) 
-                    ?: return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
-                    ))
-
-                return@audiencePlaceholder Tag.inserting(Component.text(Utils.titleCase(pokemon.gender.name)))
-            }
+        return GenericResult.valid(Component.text(Utils.titleCase(pokemon.gender.name)))
     }
+
+    override fun id(): String = "party_gender"
 }

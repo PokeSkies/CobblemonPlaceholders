@@ -3,60 +3,53 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.party
 import com.cobblemon.mod.common.Cobblemon
 import com.google.gson.annotations.SerializedName
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonPlaceholder
-import io.github.miniplaceholders.api.Expansion
+import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
+import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.tag.Tag
-import net.minecraft.server.network.ServerPlayerEntity
-import java.util.*
+import net.minecraft.server.level.ServerPlayer
 
-class PartyAspects : CobblemonPlaceholder {
-    override fun register(builder: Expansion.Builder) {
-        builder.filter(ServerPlayerEntity::class.java)
-            .audiencePlaceholder("party_aspects") { audience, queue, _ ->
-                if (queue.peek() == null)
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
-                    ))
+class PartyAspects : PlayerPlaceholder {
+    override fun handle(player: ServerPlayer, args: List<String>): GenericResult {
+        if (args.isEmpty())
+            return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+            ))
 
-                val player = audience as ServerPlayerEntity
+        val slot: Int? = args.getOrNull(0)?.toIntOrNull()
+        if (slot == null || slot !in 6 downTo 1)
+            return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
+            ))
 
-                val slot: OptionalInt = queue.pop().asInt()
-                if (slot.isEmpty || slot.asInt !in 6 downTo 1)
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.invalidSlot
-                    ))
+        val pokemon = Cobblemon.storage.getParty(player).get(slot - 1)
+            ?: return GenericResult.valid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
+            ))
 
-                val pokemon = Cobblemon.storage.getParty(player).get(slot.asInt - 1)
-                    ?: return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.emptySlot
-                    ))
+        if (args.size > 1) {
+            val aspectSlot = args.getOrNull(1)?.toIntOrNull() ?: return GenericResult.invalid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.aspects.invalidSlot
+            ))
 
-                if (queue.peek() != null) {
-                    val aspectSlot = queue.pop().asInt()
-                    if (aspectSlot.isEmpty)
-                        return@audiencePlaceholder Tag.inserting(Component.text(
-                            CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.aspects.invalidSlot
-                        ))
+            return GenericResult.valid(Component.text(
+                if (aspectSlot <= pokemon.aspects.size)
+                    pokemon.aspects.toList()[aspectSlot - 1]
+                else
+                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.aspects.emptySlot
+            ))
+        }
 
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        if (aspectSlot.asInt <= pokemon.aspects.size)
-                            pokemon.aspects.toList()[aspectSlot.asInt - 1]
-                        else
-                            CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.aspects.emptySlot
-                    ))
-                }
+        if (pokemon.aspects.isEmpty())
+            return GenericResult.valid(Component.text(
+                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.aspects.emptyList
+            ))
 
-                if (pokemon.aspects.isEmpty())
-                    return@audiencePlaceholder Tag.inserting(Component.text(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.aspects.emptyList
-                    ))
-
-                return@audiencePlaceholder Tag.inserting(Component.text(
-                    pokemon.aspects.joinToString(", ")
-                ))
-            }
+        return GenericResult.valid(Component.text(
+            pokemon.aspects.joinToString(", ")
+        ))
     }
+
+    override fun id(): String = "party_aspects"
 
     class Options(
         @SerializedName("invalid_slot")

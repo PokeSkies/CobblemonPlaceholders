@@ -3,49 +3,44 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.google.gson.annotations.SerializedName
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
-import com.pokeskies.cobblemonplaceholders.placeholders.CobblemonGlobalPlaceholder
+import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
+import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.Utils
-import io.github.miniplaceholders.api.Expansion
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.Context
-import net.kyori.adventure.text.minimessage.tag.Tag
-import net.kyori.adventure.text.minimessage.tag.resolver.ArgumentQueue
 
-class SpeciesTypes : CobblemonGlobalPlaceholder {
-    override fun register(builder: Expansion.Builder) {
-        builder.globalPlaceholder("species_types", this)
-    }
-
-    override fun apply(queue: ArgumentQueue, ctx: Context): Tag {
-        if (queue.peek() == null)
-            return Tag.inserting(Component.text(
+class SpeciesTypes : ServerPlaceholder {
+    override fun handle(args: List<String>): GenericResult {
+        if (args.isEmpty())
+            return GenericResult.invalid(Component.text(
                 CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
             ))
 
-        val species = PokemonSpecies.getByName(queue.pop().value().lowercase()) 
-            ?: return Tag.inserting(Component.text(
+        val species = PokemonSpecies.getByName(args[0].lowercase())
+            ?: return GenericResult.invalid(Component.text(
                 CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
             ))
 
         val types = species.types.toList()
 
-        if (queue.peek() != null) {
-            val typeSlot = queue.pop().asInt()
-            if (typeSlot.isEmpty || typeSlot.asInt !in 2 downTo 1)
-                return Tag.inserting(Component.text(
+        if (args.size > 1) {
+            val typeSlot = args.getOrNull(1)?.toIntOrNull()
+            if (typeSlot == null || typeSlot !in 2 downTo 1)
+                return GenericResult.invalid(Component.text(
                     CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.types.invalidSlot
                 ))
 
-            return Tag.inserting(Component.text(
-                if (typeSlot.asInt <= types.size)
-                    Utils.titleCase(types[typeSlot.asInt - 1].name)
+            return GenericResult.valid(Component.text(
+                if (typeSlot <= types.size)
+                    Utils.titleCase(types[typeSlot - 1].name)
                 else
                     CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.types.emptySlot
             ))
         }
 
-        return Tag.inserting(Component.text(types.joinToString(", ") { Utils.titleCase(it.name) } ))
+        return GenericResult.valid(Component.text(types.joinToString(", ") { Utils.titleCase(it.name) } ))
     }
+
+    override fun id(): String = "species_types"
 
     class Options(
         @SerializedName("invalid_slot")

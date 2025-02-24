@@ -2,19 +2,17 @@ package com.pokeskies.cobblemonplaceholders.utils
 
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
 import net.kyori.adventure.text.minimessage.MiniMessage
-import net.minecraft.text.Text
+import net.minecraft.network.chat.Component
 import java.text.DecimalFormat
 import java.util.*
 import java.util.regex.Pattern
-import kotlin.math.min
-
 
 object Utils {
     private val miniMessage: MiniMessage = MiniMessage.miniMessage()
     private val decimalFormatter: DecimalFormat = DecimalFormat()
 
-    fun deserializeText(text: String): Text {
-        return CobblemonPlaceholders.INSTANCE.adventure!!.toNative(miniMessage.deserialize(text))
+    fun deserializeText(text: String): Component {
+        return CobblemonPlaceholders.INSTANCE.adventure.toNative(miniMessage.deserialize(text))
     }
 
     fun printError(message: String) {

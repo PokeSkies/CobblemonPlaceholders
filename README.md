@@ -1,7 +1,7 @@
 # CobblemonPlaceholders
 <img height="50" src="https://camo.githubusercontent.com/a94064bebbf15dfed1fddf70437ea2ac3521ce55ac85650e35137db9de12979d/68747470733a2f2f692e696d6775722e636f6d2f6331444839564c2e706e67" alt="Requires Fabric Kotlin"/>
 
-A Fabric (1.20.1) server-sided MiniPlaceholders expansion for the Cobblemon mod! Includes many useful placeholders for Pokemon species and player Party Pokemon.
+A Fabric server-sided MiniPlaceholders expansion for the Cobblemon mod! Includes many useful placeholders for Pokemon species and player Party Pokemon.
 
 More information on configuration can be found on the [Wiki](https://github.com/PokeSkies/CobblemonPlaceholders/wiki)!
 
@@ -13,13 +13,15 @@ More information on configuration can be found on the [Wiki](https://github.com/
 ## Installation
 1. Download the latest version of the mod from [Modrinth](https://modrinth.com/mod/cobblemonplaceholders).
 2. Download all required dependencies:
-    - [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
-    - [Fabric Permissions API](https://github.com/PokeSkies/fabric-permissions-api)
-    - [MiniPlaceholders](https://modrinth.com/plugin/miniplaceholders)
-    - [Cobblemon](https://modrinth.com/mod/cobblemon)
-3. Install the mod and dependencies into your server's `mods` folder.
-4. Configure the config file in the `./config/cobblemonplaceholders/config.json` file.
-5. Use the placeholders! See [Placeholders](https://github.com/PokeSkies/CobblemonPlaceholders/wiki/Placeholders) for more information.
+- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
+- [Fabric Permissions API](https://github.com/PokeSkies/fabric-permissions-api)
+- [Cobblemon](https://modrinth.com/mod/cobblemon)
+3. Download one of the supported placeholder mod:
+- [MiniPlaceholders](https://modrinth.com/plugin/miniplaceholders)
+- [PlaceholderAPI](https://modrinth.com/mod/placeholder-api)
+4. Install the mod and dependencies into your server's `mods` folder.
+5. Configure the config file in the `./config/cobblemonplaceholders/config.json` file.
+6. Use the placeholders! See [Placeholders](https://github.com/PokeSkies/CobblemonPlaceholders/wiki/Placeholders) for more information.
 
 ## Commands/Permissions
 | Command                       | Description                                        | Permission                           |

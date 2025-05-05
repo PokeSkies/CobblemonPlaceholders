@@ -41,6 +41,18 @@
         "invalid_slot": "Invalid type slot argument (1-2)!",
         "empty_slot": "No Type"
       }
+    },
+    "pokedex": {
+      "include_unimplemented": false,
+      "dex_seen_percent": {
+        "fraction_min": 0,
+        "fraction_max": 0
+      },
+      "dex_caught_percent": {
+        "fraction_min": 0,
+        "fraction_max": 0
+      },
+      "invalid_species": "Provide a valid species argument!"
     }
   }
 }

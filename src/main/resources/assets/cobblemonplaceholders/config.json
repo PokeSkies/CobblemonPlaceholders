@@ -26,6 +26,12 @@
       },
       "nickname": {
         "species_if_empty": true
+      },
+      "ot_uuid": {
+        "none": "Unknown"
+      },
+      "ot_name": {
+        "none": "Unknown"
       }
     },
     "species": {
@@ -53,6 +59,9 @@
         "fraction_max": 0
       },
       "invalid_species": "Provide a valid species argument!"
+    },
+    "misc": {
+      "invalid_molang": "Invalid Molang expression!"
     }
   }
 }

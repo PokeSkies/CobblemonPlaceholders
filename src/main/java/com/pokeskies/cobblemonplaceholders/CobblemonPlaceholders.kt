@@ -4,6 +4,8 @@ import com.pokeskies.cobblemonplaceholders.commands.BaseCommands
 import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.services.IPlaceholderService
 import com.pokeskies.cobblemonplaceholders.placeholders.services.PlaceholderServices
+import com.pokeskies.cobblemonplaceholders.placeholders.types.misc.MolangPlayer
+import com.pokeskies.cobblemonplaceholders.placeholders.types.misc.MolangServer
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
@@ -19,7 +21,6 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.io.File
 import java.util.stream.Stream
-
 
 class CobblemonPlaceholders : ModInitializer {
     companion object {
@@ -63,7 +64,7 @@ class CobblemonPlaceholders : ModInitializer {
     }
 
     private fun registerPlaceholders() {
-        println("Active services: $placeholderServices")
+        // SERVER PLACEHOLDERS
         Stream.of(
             SpeciesName(),
             SpeciesIDNational(),
@@ -79,8 +80,10 @@ class CobblemonPlaceholders : ModInitializer {
             SpeciesBaseStatsSpecialDefence(),
             SpeciesBaseStatsSpeed(),
             PokedexTotal(),
+            MolangServer(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerServer(placeholder) } }
 
+        // PLAYER PLACEHOLDERS
         Stream.of(
             PartyName(),
             PartySpecies(),
@@ -127,6 +130,8 @@ class CobblemonPlaceholders : ModInitializer {
             PartyEVsPercent(),
             PartyAspects(),
             PartyAspectsHas(),
+            PartyOTUUID(),
+            PartyOTName(),
             PokedexAmountSeen(),
             PokedexAmountCaught(),
             PokedexPercentSeen(),
@@ -135,6 +140,7 @@ class CobblemonPlaceholders : ModInitializer {
             PokedexSpeciesCaught(),
             PokedexShiniesCaught(),
             PokedexShiniesSeen(),
+            MolangPlayer(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
 
         placeholderServices.forEach { it.finalizeRegister() }

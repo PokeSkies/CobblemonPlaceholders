@@ -14,7 +14,8 @@ class MainConfig(
     class PlaceholderOptions(
         val party: Party = Party(),
         val species: Species = Species(),
-        val pokedex: Pokedex = Pokedex()
+        val pokedex: Pokedex = Pokedex(),
+        val misc: Misc = Misc()
     ) {
         class Party(
             @SerializedName("invalid_slot")
@@ -31,9 +32,15 @@ class MainConfig(
             @SerializedName("evs_percent")
             val evsPercent: PartyEVsPercent.Options = PartyEVsPercent.Options(),
             val nickname: PartyNickname.Options = PartyNickname.Options(),
+            @SerializedName("ot_uuid")
+            val otUUID: PartyOTUUID.Options = PartyOTUUID.Options(),
+            @SerializedName("ot_name")
+            val otName: PartyOTName.Options = PartyOTName.Options(),
         ) {
             override fun toString(): String {
-                return "Party(invalidSlot='$invalidSlot', emptySlot='$emptySlot', aspects=$aspects, aspectsHas=$aspectsHas, moveset=$moveset, ivsPercent=$ivsPercent, evsPercent=$evsPercent, nickname=$nickname)"
+                return "Party(invalidSlot='$invalidSlot', emptySlot='$emptySlot', aspects=$aspects, " +
+                        "aspectsHas=$aspectsHas, moveset=$moveset, ivsPercent=$ivsPercent, evsPercent=$evsPercent, " +
+                        "nickname=$nickname, otUUID=$otUUID, otName=$otName)"
             }
         }
 
@@ -63,6 +70,15 @@ class MainConfig(
         ) {
             override fun toString(): String {
                 return "Pokedex(includeUnimplemented=$includeUnimplemented, dexSeenPercent=$dexSeenPercent, dexCaughtPercent=$dexCaughtPercent, invalidSpecies='$invalidSpecies')"
+            }
+        }
+
+        class Misc(
+            @SerializedName("invalid_molang")
+            val invalidMolang: String = "Invalid Molang expression!",
+        ) {
+            override fun toString(): String {
+                return "Misc(invalidMolang='$invalidMolang')"
             }
         }
 

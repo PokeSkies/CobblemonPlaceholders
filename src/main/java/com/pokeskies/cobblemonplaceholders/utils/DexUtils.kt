@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokedex.PokedexEntryProgress
 import com.cobblemon.mod.common.api.pokedex.PokedexManager
-import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
 import net.minecraft.resources.ResourceLocation

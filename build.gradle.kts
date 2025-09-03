@@ -69,7 +69,9 @@ dependencies {
     // Adventure Text!
     modImplementation(include("net.kyori:adventure-platform-fabric:5.14.2")!!)
 
-    modImplementation("me.lucko:fabric-permissions-api:0.3.1")
+    modImplementation("me.lucko:fabric-permissions-api:0.3.1")?.let {
+        include(it)
+    }
 
     modImplementation("io.github.miniplaceholders:miniplaceholders-api:2.2.3")
     modImplementation("io.github.miniplaceholders:miniplaceholders-kotlin-ext:2.2.3")

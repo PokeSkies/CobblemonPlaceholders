@@ -7,6 +7,7 @@ import com.pokeskies.cobblemonplaceholders.placeholders.services.PlaceholderServ
 import com.pokeskies.cobblemonplaceholders.placeholders.types.misc.MolangPlayer
 import com.pokeskies.cobblemonplaceholders.placeholders.types.misc.MolangServer
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
+import com.pokeskies.cobblemonplaceholders.placeholders.types.pc.PCBoxCount
 import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 import com.pokeskies.cobblemonplaceholders.utils.Utils
@@ -141,6 +142,7 @@ class CobblemonPlaceholders : ModInitializer {
             PokedexShiniesCaught(),
             PokedexShiniesSeen(),
             MolangPlayer(),
+            PCBoxCount(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
 
         placeholderServices.forEach { it.finalizeRegister() }

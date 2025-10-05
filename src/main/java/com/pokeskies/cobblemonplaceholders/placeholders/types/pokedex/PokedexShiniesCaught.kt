@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.api.pokedex.PokedexEntryProgress
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.DexUtils
-import net.kyori.adventure.text.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 
@@ -21,9 +20,9 @@ class PokedexShiniesCaught : PlayerPlaceholder {
             DexUtils.getDexManager(player),
             dexID,
             PokedexEntryProgress.CAUGHT
-        ) ?: return GenericResult.invalid(Component.text("Invalid dex identifier"))
+        ) ?: return GenericResult.invalid("Invalid dex identifier")
 
-        return GenericResult.valid(Component.text(total.toString()))
+        return GenericResult.valid(total.toString())
     }
 
     override fun id(): String = "pokedex_shinies_caught"

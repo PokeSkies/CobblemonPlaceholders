@@ -7,7 +7,6 @@ import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.DexUtils
 import com.pokeskies.cobblemonplaceholders.utils.Utils
-import net.kyori.adventure.text.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 
@@ -20,18 +19,18 @@ class PokedexPercentCaught : PlayerPlaceholder {
             dexID = ResourceLocation.fromNamespaceAndPath(args[0], args[1])
         }
 
-        val total = DexUtils.getDexTotal(dexID) ?: return GenericResult.invalid(Component.text("Invalid dex identifier"))
+        val total = DexUtils.getDexTotal(dexID) ?: return GenericResult.invalid("Invalid dex identifier")
         val progress = DexUtils.getDexProgress(
             DexUtils.getDexManager(player),
             dexID,
             PokedexEntryProgress.CAUGHT
-        ) ?: return GenericResult.invalid(Component.text("Invalid dex identifier"))
+        ) ?: return GenericResult.invalid("Invalid dex identifier")
 
-        return GenericResult.valid(Component.text(Utils.parseDouble(
+        return GenericResult.valid(Utils.parseDouble(
             (progress.toDouble() / total) * 100,
             CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.pokedex.dexCaughtPercent.fractionMin,
             CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.pokedex.dexCaughtPercent.fractionMax
-        )))
+        ))
     }
 
     override fun id(): String = "pokedex_percent_caught"

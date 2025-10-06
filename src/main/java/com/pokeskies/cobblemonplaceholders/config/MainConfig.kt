@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPercentCaught
 import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPercentSeen
-import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesAbilities
-import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesEggGroups
-import com.pokeskies.cobblemonplaceholders.placeholders.types.species.SpeciesTypes
+import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 
 class MainConfig(
     val placeholders: PlaceholderOptions = PlaceholderOptions()
@@ -51,9 +49,12 @@ class MainConfig(
             val abilities: SpeciesAbilities.Options = SpeciesAbilities.Options(),
             val egggroups: SpeciesEggGroups.Options = SpeciesEggGroups.Options(),
             val types: SpeciesTypes.Options = SpeciesTypes.Options(),
+            val labels: SpeciesLabels.Options = SpeciesLabels.Options(),
+            @SerializedName("labels_has")
+            val labelsHas: SpeciesLabelsHas.Options = SpeciesLabelsHas.Options(),
         ) {
             override fun toString(): String {
-                return "Species(invalidSpecies='$invalidSpecies', abilities=$abilities, egggroups=$egggroups, types=$types)"
+                return "Species(invalidSpecies='$invalidSpecies', abilities=$abilities, egggroups=$egggroups, types=$types, labels=$labels, labelsHas=$labelsHas)"
             }
         }
 

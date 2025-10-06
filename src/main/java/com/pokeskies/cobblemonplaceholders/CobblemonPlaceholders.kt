@@ -80,6 +80,8 @@ class CobblemonPlaceholders : ModInitializer {
             SpeciesBaseStatsSpecialAttack(),
             SpeciesBaseStatsSpecialDefence(),
             SpeciesBaseStatsSpeed(),
+            SpeciesLabels(),
+            SpeciesLabelsHas(),
             PokedexTotal(),
             MolangServer(),
         ).forEach { placeholder -> placeholderServices.forEach { it.registerServer(placeholder) } }
@@ -133,6 +135,9 @@ class CobblemonPlaceholders : ModInitializer {
             PartyAspectsHas(),
             PartyOTUUID(),
             PartyOTName(),
+            PartyLegendary(),
+            PartyMythical(),
+            PartyUltraBeast(),
             PokedexAmountSeen(),
             PokedexAmountCaught(),
             PokedexPercentSeen(),

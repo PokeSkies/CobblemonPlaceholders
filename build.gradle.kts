@@ -65,7 +65,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:${project.properties["fabric_kotlin_version"].toString()}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_version"].toString()}")
 
-    modImplementation("com.cobblemon:fabric:1.7.0+1.21.1-main-488f38c")
+    modImplementation("com.cobblemon:fabric:1.7.0+1.21.1")
 
     // Adventure Text!
     modImplementation(include("net.kyori:adventure-platform-fabric:5.14.2")!!)

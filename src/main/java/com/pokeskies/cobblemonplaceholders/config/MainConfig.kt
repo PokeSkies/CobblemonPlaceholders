@@ -34,6 +34,8 @@ class MainConfig(
             val otUUID: PartyOTUUID.Options = PartyOTUUID.Options(),
             @SerializedName("ot_name")
             val otName: PartyOTName.Options = PartyOTName.Options(),
+            @SerializedName("custom_property")
+            val customProperty: PartyCustomProperty.Options = PartyCustomProperty.Options(),
         ) {
             override fun toString(): String {
                 return "Party(invalidSlot='$invalidSlot', emptySlot='$emptySlot', aspects=$aspects, " +

@@ -137,6 +137,7 @@ class CobblemonPlaceholders : ModInitializer {
             PartyLegendary(),
             PartyMythical(),
             PartyUltraBeast(),
+            PartyCustomProperty(),
             PokedexAmountSeen(),
             PokedexAmountCaught(),
             PokedexPercentSeen(),

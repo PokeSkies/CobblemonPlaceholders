@@ -28,5 +28,5 @@ class PartyEVsSpeed : PlayerPlaceholder {
         return GenericResult.valid(pokemon.evs[Stats.SPEED] ?: 0)
     }
 
-    override fun id(): String = "party_evs_spe"
+    override fun id(): List<String> = listOf("party_evs_spe")
 }

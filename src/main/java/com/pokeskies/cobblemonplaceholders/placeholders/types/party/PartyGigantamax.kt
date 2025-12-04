@@ -27,5 +27,5 @@ class PartyGigantamax : PlayerPlaceholder {
         return GenericResult.valid(pokemon.gmaxFactor)
     }
 
-    override fun id(): String = "party_gmax"
+    override fun id(): List<String> = listOf("party_gmax")
 }

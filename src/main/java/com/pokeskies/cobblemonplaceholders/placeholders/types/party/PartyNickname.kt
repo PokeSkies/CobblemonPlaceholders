@@ -35,8 +35,7 @@ class PartyNickname : PlayerPlaceholder {
         )
     }
 
-    override fun id(): String = "party_nickname"
-
+    override fun id(): List<String> = listOf("party_nickname")
     class Options(
         @SerializedName("species_if_empty")
         val speciesIfEmpty: Boolean = true

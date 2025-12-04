@@ -27,5 +27,5 @@ class PartySpeciesID : PlayerPlaceholder {
         return GenericResult.valid(pokemon.species.resourceIdentifier.toString())
     }
 
-    override fun id(): String = "party_species_id"
+    override fun id(): List<String> = listOf("party_species_id")
 }

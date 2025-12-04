@@ -27,5 +27,5 @@ class PartyName : PlayerPlaceholder {
         return GenericResult.valid(pokemon.species.name)
     }
 
-    override fun id(): String = "party_name"
+    override fun id(): List<String> = listOf("party_name")
 }

@@ -28,5 +28,5 @@ class PartyEVsAttack : PlayerPlaceholder {
         return GenericResult.valid(pokemon.evs[Stats.ATTACK] ?: 0)
     }
 
-    override fun id(): String = "party_evs_atk"
+    override fun id(): List<String> = listOf("party_evs_atk")
 }

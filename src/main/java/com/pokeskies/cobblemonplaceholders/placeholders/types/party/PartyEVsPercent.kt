@@ -40,8 +40,7 @@ class PartyEVsPercent : PlayerPlaceholder {
         )
     }
 
-    override fun id(): String = "party_evs_percent"
-
+    override fun id(): List<String> = listOf("party_evs_percent")
     class Options(
         @SerializedName("fraction_min")
         val fractionMin: Int = 0,

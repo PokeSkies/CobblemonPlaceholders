@@ -27,5 +27,5 @@ class PartyTradable : PlayerPlaceholder {
         return GenericResult.valid(pokemon.tradeable)
     }
 
-    override fun id(): String = "party_tradable"
+    override fun id(): List<String> = listOf("party_tradable", "party_tradeable")
 }

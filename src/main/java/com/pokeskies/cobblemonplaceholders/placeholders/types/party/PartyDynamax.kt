@@ -27,5 +27,5 @@ class PartyDynamax : PlayerPlaceholder {
         return GenericResult.valid(pokemon.dmaxLevel)
     }
 
-    override fun id(): String = "party_dmax"
+    override fun id(): List<String> = listOf("party_dmax")
 }

@@ -32,6 +32,5 @@ class MolangPlayer : PlayerPlaceholder {
 
         return GenericResult.valid(result.asString())
     }
-
-    override fun id(): String = "molang_player"
+    override fun id(): List<String> = listOf("molang_player")
 }

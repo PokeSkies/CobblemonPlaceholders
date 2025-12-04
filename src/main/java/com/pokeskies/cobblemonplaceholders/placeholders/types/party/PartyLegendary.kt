@@ -27,5 +27,5 @@ class PartyLegendary : PlayerPlaceholder {
         return GenericResult.valid(pokemon.isLegendary())
     }
 
-    override fun id(): String = "party_legendary"
+    override fun id(): List<String> = listOf("party_legendary")
 }

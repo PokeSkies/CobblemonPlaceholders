@@ -41,8 +41,7 @@ class PartyAspectsHas : PlayerPlaceholder {
         )
     }
 
-    override fun id(): String = "party_aspects_has"
-
+    override fun id(): List<String> = listOf("party_aspects_has")
     class Options(
         @SerializedName("invalid_aspect")
         val invalidAspect: String = "Invalid aspect argument!"

@@ -27,5 +27,5 @@ class PartyStatsAttack : PlayerPlaceholder {
         return GenericResult.valid(pokemon.attack)
     }
 
-    override fun id(): String = "party_stats_atk"
+    override fun id(): List<String> = listOf("party_stats_atk")
 }

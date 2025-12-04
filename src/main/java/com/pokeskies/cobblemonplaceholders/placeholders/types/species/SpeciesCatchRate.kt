@@ -24,5 +24,5 @@ class SpeciesCatchRate : ServerPlaceholder {
         return GenericResult.valid(species.catchRate)
     }
 
-    override fun id(): String = "species_catchrate"
+    override fun id(): List<String> = listOf("species_catchrate")
 }

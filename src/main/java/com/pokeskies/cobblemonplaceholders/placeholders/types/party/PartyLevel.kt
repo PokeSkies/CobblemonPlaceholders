@@ -27,5 +27,5 @@ class PartyLevel : PlayerPlaceholder {
         return GenericResult.valid(pokemon.level)
     }
 
-    override fun id(): String = "party_level"
+    override fun id(): List<String> = listOf("party_level")
 }

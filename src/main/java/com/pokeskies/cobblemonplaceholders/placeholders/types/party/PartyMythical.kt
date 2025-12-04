@@ -27,5 +27,5 @@ class PartyMythical : PlayerPlaceholder {
         return GenericResult.valid(pokemon.isMythical())
     }
 
-    override fun id(): String = "party_mythical"
+    override fun id(): List<String> = listOf("party_mythical")
 }

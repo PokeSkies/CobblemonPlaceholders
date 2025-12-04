@@ -47,8 +47,7 @@ class SpeciesLabels : ServerPlaceholder {
         )
     }
 
-    override fun id(): String = "species_labels"
-
+    override fun id(): List<String> = listOf("species_labels")
     class Options(
         @SerializedName("invalid_slot")
         val invalidSlot: String = "Invalid labels slot argument (1+)!",

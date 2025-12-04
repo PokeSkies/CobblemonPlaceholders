@@ -25,5 +25,5 @@ class SpeciesBaseStatsDefence : ServerPlaceholder {
         return GenericResult.valid(species.baseStats[Stats.DEFENCE] ?: 0)
     }
 
-    override fun id(): String = "species_basestats_def"
+    override fun id(): List<String> = listOf("species_basestats_def")
 }

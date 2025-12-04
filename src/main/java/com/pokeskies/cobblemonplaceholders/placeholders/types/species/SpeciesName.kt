@@ -24,5 +24,5 @@ class SpeciesName : ServerPlaceholder {
         return GenericResult.valid(species.name)
     }
 
-    override fun id(): String = "species_name"
+    override fun id(): List<String> = listOf("species_name")
 }

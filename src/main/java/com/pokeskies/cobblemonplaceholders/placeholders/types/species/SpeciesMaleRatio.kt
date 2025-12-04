@@ -24,5 +24,5 @@ class SpeciesMaleRatio : ServerPlaceholder {
         return GenericResult.valid(species.maleRatio)
     }
 
-    override fun id(): String = "species_maleratio"
+    override fun id(): List<String> = listOf("species_maleratio")
 }

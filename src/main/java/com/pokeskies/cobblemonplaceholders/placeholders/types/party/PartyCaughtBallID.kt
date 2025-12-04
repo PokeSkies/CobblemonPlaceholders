@@ -27,5 +27,5 @@ class PartyCaughtBallID : PlayerPlaceholder {
         return GenericResult.valid(pokemon.caughtBall.name.asString())
     }
 
-    override fun id(): String = "party_caughtball_id"
+    override fun id(): List<String> = listOf("party_caughtball_id")
 }

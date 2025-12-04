@@ -25,5 +25,5 @@ class PokedexAmountSeen : PlayerPlaceholder {
         return GenericResult.valid(total.toString())
     }
 
-    override fun id(): String = "pokedex_amount_seen"
+    override fun id(): List<String> = listOf("pokedex_amount_seen")
 }

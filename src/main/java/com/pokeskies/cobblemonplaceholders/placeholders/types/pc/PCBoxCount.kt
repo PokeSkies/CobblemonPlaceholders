@@ -9,6 +9,5 @@ class PCBoxCount : PlayerPlaceholder {
     override fun handle(player: ServerPlayer, args: List<String>): GenericResult {
         return GenericResult.valid(Cobblemon.storage.getPC(player).boxes.size)
     }
-
-    override fun id(): String = "pc_box_count"
+    override fun id(): List<String> = listOf("pc_box_count")
 }

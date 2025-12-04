@@ -28,5 +28,5 @@ class PartyAbility : PlayerPlaceholder {
         return GenericResult.valid(Utils.titleCase(pokemon.ability.name))
     }
 
-    override fun id(): String = "party_ability"
+    override fun id(): List<String> = listOf("party_ability")
 }

@@ -22,5 +22,5 @@ class MolangServer : ServerPlaceholder {
         return GenericResult.valid(result.asString())
     }
 
-    override fun id(): String = "molang_server"
+    override fun id(): List<String> = listOf("molang_server")
 }

@@ -27,5 +27,5 @@ class PartyShiny : PlayerPlaceholder {
         return GenericResult.valid(pokemon.shiny)
     }
 
-    override fun id(): String = "party_shiny"
+    override fun id(): List<String> = listOf("party_shiny")
 }

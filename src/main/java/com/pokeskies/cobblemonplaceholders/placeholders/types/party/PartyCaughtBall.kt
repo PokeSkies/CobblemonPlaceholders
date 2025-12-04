@@ -29,5 +29,5 @@ class PartyCaughtBall : PlayerPlaceholder {
         return GenericResult.valid(Utils.titleCase(pokemon.caughtBall.name.path.replace("_", " ")))
     }
 
-    override fun id(): String = "party_caughtball"
+    override fun id(): List<String> = listOf("party_caughtball")
 }

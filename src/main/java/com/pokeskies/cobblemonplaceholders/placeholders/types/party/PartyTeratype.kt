@@ -27,5 +27,5 @@ class PartyTeratype : PlayerPlaceholder {
         return GenericResult.valid(pokemon.teraType.displayName.string)
     }
 
-    override fun id(): String = "party_teratype"
+    override fun id(): List<String> = listOf("party_teratype")
 }

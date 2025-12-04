@@ -28,5 +28,5 @@ class PartyForm : PlayerPlaceholder {
         return GenericResult.valid(Utils.titleCase(pokemon.form.name))
     }
 
-    override fun id(): String = "party_form"
+    override fun id(): List<String> = listOf("party_form")
 }

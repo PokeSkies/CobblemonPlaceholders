@@ -24,5 +24,5 @@ class SpeciesIDNational : ServerPlaceholder {
         return GenericResult.valid(species.nationalPokedexNumber)
     }
 
-    override fun id(): String = "species_id_national"
+    override fun id(): List<String> = listOf("species_id_national")
 }

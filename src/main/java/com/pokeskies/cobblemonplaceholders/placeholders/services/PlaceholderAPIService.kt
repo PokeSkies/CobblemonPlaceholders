@@ -17,26 +17,30 @@ class PlaceholderAPIService: IPlaceholderService {
     }
 
     override fun registerPlayer(placeholder: PlayerPlaceholder) {
-        Placeholders.register(ResourceLocation.fromNamespaceAndPath("cobblemon", placeholder.id())) { ctx, arg ->
-            val player = ctx.player ?: return@register PlaceholderResult.invalid("NO PLAYER")
-            val args = if (arg != null) parse(arg, player).split(":") else emptyList()
-            val result = placeholder.handle(player, args)
-            return@register if (result.isSuccessful) {
-                PlaceholderResult.value(CobblemonPlaceholders.INSTANCE.adventure.toNative(result.asComponent()))
-            } else {
-                PlaceholderResult.invalid(result.string)
+        placeholder.id().forEach { id ->
+            Placeholders.register(ResourceLocation.fromNamespaceAndPath("cobblemon", id)) { ctx, arg ->
+                val player = ctx.player ?: return@register PlaceholderResult.invalid("NO PLAYER")
+                val args = if (arg != null) parse(arg, player).split(":") else emptyList()
+                val result = placeholder.handle(player, args)
+                return@register if (result.isSuccessful) {
+                    PlaceholderResult.value(CobblemonPlaceholders.INSTANCE.adventure.toNative(result.asComponent()))
+                } else {
+                    PlaceholderResult.invalid(result.string)
+                }
             }
         }
     }
 
     override fun registerServer(placeholder: ServerPlaceholder) {
-        Placeholders.register(ResourceLocation.fromNamespaceAndPath("cobblemon", placeholder.id())) { ctx, arg ->
-            val args = if (arg != null) parse(arg, ctx.player).split(":") else emptyList()
-            val result = placeholder.handle(args.map { parse(it) })
-            return@register if (result.isSuccessful) {
-                PlaceholderResult.value(CobblemonPlaceholders.INSTANCE.adventure.toNative(result.asComponent()))
-            } else {
-                PlaceholderResult.invalid(result.string)
+        placeholder.id().forEach { id ->
+            Placeholders.register(ResourceLocation.fromNamespaceAndPath("cobblemon", id)) { ctx, arg ->
+                val args = if (arg != null) parse(arg, ctx.player).split(":") else emptyList()
+                val result = placeholder.handle(args.map { parse(it) })
+                return@register if (result.isSuccessful) {
+                    PlaceholderResult.value(CobblemonPlaceholders.INSTANCE.adventure.toNative(result.asComponent()))
+                } else {
+                    PlaceholderResult.invalid(result.string)
+                }
             }
         }
     }

@@ -25,5 +25,5 @@ class PokedexShiniesCaught : PlayerPlaceholder {
         return GenericResult.valid(total.toString())
     }
 
-    override fun id(): String = "pokedex_shinies_caught"
+    override fun id(): List<String> = listOf("pokedex_shinies_caught")
 }

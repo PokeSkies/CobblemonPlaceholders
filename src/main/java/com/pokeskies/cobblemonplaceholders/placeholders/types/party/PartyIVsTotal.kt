@@ -30,5 +30,5 @@ class PartyIVsTotal : PlayerPlaceholder {
         )
     }
 
-    override fun id(): String = "party_ivs_total"
+    override fun id(): List<String> = listOf("party_ivs_total")
 }

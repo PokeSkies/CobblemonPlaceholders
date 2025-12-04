@@ -27,5 +27,5 @@ class PartyUltraBeast : PlayerPlaceholder {
         return GenericResult.valid(pokemon.isUltraBeast())
     }
 
-    override fun id(): String = "party_ultra_beast"
+    override fun id(): List<String> = listOf("party_ultra_beast")
 }

@@ -28,5 +28,5 @@ class PartyNature : PlayerPlaceholder {
         return GenericResult.valid(Utils.titleCase(pokemon.nature.name.path))
     }
 
-    override fun id(): String = "party_nature"
+    override fun id(): List<String> = listOf("party_nature")
 }

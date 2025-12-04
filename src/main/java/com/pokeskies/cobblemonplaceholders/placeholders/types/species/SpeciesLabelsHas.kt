@@ -37,8 +37,7 @@ class SpeciesLabelsHas : ServerPlaceholder {
         )
     }
 
-    override fun id(): String = "species_labels_has"
-
+    override fun id(): List<String> = listOf("species_labels_has")
     class Options(
         @SerializedName("invalid_format")
         val invalidFormat: String = "Invalid arguments! Species and Label required."

@@ -27,5 +27,5 @@ class PartyStatsHP : PlayerPlaceholder {
         return GenericResult.valid(pokemon.maxHealth)
     }
 
-    override fun id(): String = "party_stats_hp"
+    override fun id(): List<String> = listOf("party_stats_hp")
 }

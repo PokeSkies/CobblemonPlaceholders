@@ -28,5 +28,5 @@ class PartyIVsHP : PlayerPlaceholder {
         return GenericResult.valid(pokemon.ivs[Stats.HP] ?: 0)
     }
 
-    override fun id(): String = "party_ivs_hp"
+    override fun id(): List<String> = listOf("party_ivs_hp")
 }

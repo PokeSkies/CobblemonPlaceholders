@@ -19,5 +19,5 @@ class PokedexTotal : ServerPlaceholder {
         return GenericResult.valid(total.toString())
     }
 
-    override fun id(): String = "pokedex_total"
+    override fun id(): List<String> = listOf("pokedex_total")
 }

@@ -28,5 +28,5 @@ class PartyIVsSpecialAttack : PlayerPlaceholder {
         return GenericResult.valid(pokemon.ivs[Stats.SPECIAL_ATTACK] ?: 0)
     }
 
-    override fun id(): String = "party_ivs_spa"
+    override fun id(): List<String> = listOf("party_ivs_spa")
 }

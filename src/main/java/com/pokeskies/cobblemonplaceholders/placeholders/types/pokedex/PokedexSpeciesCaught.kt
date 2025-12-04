@@ -22,5 +22,5 @@ class PokedexSpeciesCaught : PlayerPlaceholder {
         return GenericResult.valid(manager.getKnowledgeForSpecies(species.resourceIdentifier) == PokedexEntryProgress.CAUGHT)
     }
 
-    override fun id(): String = "pokedex_species_caught"
+    override fun id(): List<String> = listOf("pokedex_species_caught")
 }

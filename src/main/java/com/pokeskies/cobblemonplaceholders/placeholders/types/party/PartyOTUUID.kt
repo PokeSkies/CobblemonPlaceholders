@@ -28,8 +28,7 @@ class PartyOTUUID : PlayerPlaceholder {
         return GenericResult.valid(pokemon.originalTrainer ?: CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.party.otUUID.none)
     }
 
-    override fun id(): String = "party_ot_uuid"
-
+    override fun id(): List<String> = listOf("party_ot_uuid")
     class Options(
         @SerializedName("none")
         val none: String = "None"

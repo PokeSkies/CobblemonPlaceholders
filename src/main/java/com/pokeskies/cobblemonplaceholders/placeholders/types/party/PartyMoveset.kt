@@ -48,8 +48,7 @@ class PartyMoveset : PlayerPlaceholder {
         )
     }
 
-    override fun id(): String = "party_moveset"
-
+    override fun id(): List<String> = listOf("party_moveset")
     class Options(
         @SerializedName("invalid_slot")
         val invalidSlot: String = "Invalid move slot argument (1-4)!",

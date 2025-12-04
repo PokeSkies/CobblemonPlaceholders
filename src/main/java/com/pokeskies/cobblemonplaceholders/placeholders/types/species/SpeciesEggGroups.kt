@@ -31,8 +31,7 @@ class SpeciesEggGroups : ServerPlaceholder {
         return GenericResult.valid(species.eggGroups.joinToString(", ") { Utils.titleCase(it.name) })
     }
 
-    override fun id(): String = "species_egggroups"
-
+    override fun id(): List<String> = listOf("species_egggroups")
     class Options(
         @SerializedName("empty_list")
         val emptyList: String = "No Egg Groups"

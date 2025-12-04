@@ -41,8 +41,7 @@ class SpeciesTypes : ServerPlaceholder {
         return GenericResult.valid(types.joinToString(", ") { Utils.titleCase(it.name) } )
     }
 
-    override fun id(): String = "species_types"
-
+    override fun id(): List<String> = listOf("species_types")
     class Options(
         @SerializedName("invalid_slot")
         val invalidSlot: String = "Invalid type slot argument (1-2)!",

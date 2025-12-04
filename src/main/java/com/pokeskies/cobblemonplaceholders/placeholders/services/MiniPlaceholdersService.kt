@@ -23,31 +23,35 @@ class MiniPlaceholdersService: IPlaceholderService {
     }
 
     override fun registerPlayer(placeholder: PlayerPlaceholder) {
-        builder.filter(ServerPlayer::class.java)
-            .audiencePlaceholder(placeholder.id()) { audience, queue, _ ->
-                val player = audience as ServerPlayer
+        placeholder.id().forEach { id ->
+            builder.filter(ServerPlayer::class.java)
+                .audiencePlaceholder(id) { audience, queue, _ ->
+                    val player = audience as ServerPlayer
+                    val arguments: MutableList<String> = mutableListOf()
+                    while (queue.peek() != null) {
+                        arguments.add(queue.pop().toString())
+                    }
+                    return@audiencePlaceholder Tag.preProcessParsed(placeholder.handle(player, arguments).string)
+                }
+        }
+    }
+
+    override fun registerServer(placeholder: ServerPlaceholder) {
+        placeholder.id().forEach { id ->
+            builder.globalPlaceholder(id) { queue, ctx ->
                 val arguments: MutableList<String> = mutableListOf()
                 while (queue.peek() != null) {
                     arguments.add(queue.pop().toString())
                 }
-                return@audiencePlaceholder Tag.preProcessParsed(placeholder.handle(player, arguments).string)
+                return@globalPlaceholder Tag.preProcessParsed(placeholder.handle(arguments).string)
+            }.audiencePlaceholder(id) { audience, queue, ctx ->
+                if (audience !is ServerPlayer) return@audiencePlaceholder Tag.inserting(Component.empty())
+                val arguments: MutableList<String> = mutableListOf()
+                while (queue.peek() != null) {
+                    arguments.add(queue.pop().toString())
+                }
+                return@audiencePlaceholder Tag.preProcessParsed(placeholder.handle(arguments).string)
             }
-    }
-
-    override fun registerServer(placeholder: ServerPlaceholder) {
-        builder.globalPlaceholder(placeholder.id()) { queue, ctx ->
-            val arguments: MutableList<String> = mutableListOf()
-            while (queue.peek() != null) {
-                arguments.add(queue.pop().toString())
-            }
-            return@globalPlaceholder Tag.preProcessParsed(placeholder.handle(arguments).string)
-        }.audiencePlaceholder(placeholder.id()) { audience, queue, ctx ->
-            if (audience !is ServerPlayer) return@audiencePlaceholder Tag.inserting(Component.empty())
-            val arguments: MutableList<String> = mutableListOf()
-            while (queue.peek() != null) {
-                arguments.add(queue.pop().toString())
-            }
-            return@audiencePlaceholder Tag.preProcessParsed(placeholder.handle(arguments).string)
         }
     }
 

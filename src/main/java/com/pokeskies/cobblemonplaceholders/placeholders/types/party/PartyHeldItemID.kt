@@ -29,5 +29,5 @@ class PartyHeldItemID : PlayerPlaceholder {
         return GenericResult.valid(BuiltInRegistries.ITEM.getId(pokemon.heldItem().item).toString())
     }
 
-    override fun id(): String = "party_helditem_id"
+    override fun id(): List<String> = listOf("party_helditem_id")
 }

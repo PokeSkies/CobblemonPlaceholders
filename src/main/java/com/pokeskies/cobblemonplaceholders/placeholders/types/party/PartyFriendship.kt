@@ -27,5 +27,5 @@ class PartyFriendship : PlayerPlaceholder {
         return GenericResult.valid(pokemon.friendship)
     }
 
-    override fun id(): String = "party_friendship"
+    override fun id(): List<String> = listOf("party_friendship")
 }

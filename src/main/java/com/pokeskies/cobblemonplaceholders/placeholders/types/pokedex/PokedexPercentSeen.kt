@@ -33,8 +33,7 @@ class PokedexPercentSeen : PlayerPlaceholder {
         ))
     }
 
-    override fun id(): String = "pokedex_percent_seen"
-
+    override fun id(): List<String> = listOf("pokedex_percent_seen")
     class Options(
         @SerializedName("fraction_min")
         val fractionMin: Int = 0,

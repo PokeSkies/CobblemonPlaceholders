@@ -28,5 +28,5 @@ class PartyGender : PlayerPlaceholder {
         return GenericResult.valid(Utils.titleCase(pokemon.gender.name))
     }
 
-    override fun id(): String = "party_gender"
+    override fun id(): List<String> = listOf("party_gender")
 }

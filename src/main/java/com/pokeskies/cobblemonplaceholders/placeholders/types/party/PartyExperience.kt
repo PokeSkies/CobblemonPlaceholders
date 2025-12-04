@@ -27,5 +27,5 @@ class PartyExperience : PlayerPlaceholder {
         return GenericResult.valid(pokemon.experience)
     }
 
-    override fun id(): String = "party_exp"
+    override fun id(): List<String> = listOf("party_exp")
 }

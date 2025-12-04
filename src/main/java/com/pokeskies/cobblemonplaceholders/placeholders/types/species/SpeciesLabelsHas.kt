@@ -2,7 +2,7 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.google.gson.annotations.SerializedName
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import net.minecraft.resources.ResourceLocation
@@ -11,12 +11,12 @@ class SpeciesLabelsHas : ServerPlaceholder {
     override fun handle(args: List<String>): GenericResult {
         if (args.isEmpty())
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
 
         if (args.size < 2) {
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.labelsHas.invalidFormat
+                ConfigManager.CONFIG.placeholders.species.labelsHas.invalidFormat
             )
         }
 
@@ -28,7 +28,7 @@ class SpeciesLabelsHas : ServerPlaceholder {
 
         if (species == null) {
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
         }
 

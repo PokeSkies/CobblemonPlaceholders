@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.molang.MoLangFunctions.asMoLangValue
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.setup
 import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.resolve
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import net.minecraft.server.level.ServerPlayer
@@ -14,7 +14,7 @@ import net.minecraft.server.level.ServerPlayer
 class MolangPlayer : PlayerPlaceholder {
     override fun handle(player: ServerPlayer, args: List<String>): GenericResult {
         if (args.isEmpty())
-            return GenericResult.invalid(CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.misc.invalidMolang)
+            return GenericResult.invalid(ConfigManager.CONFIG.placeholders.misc.invalidMolang)
 
         val runtime = MoLangRuntime().setup().also {
             it.environment.query.addFunctions(

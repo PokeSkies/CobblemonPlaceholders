@@ -1,7 +1,7 @@
 package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 
 import com.google.gson.annotations.SerializedName
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.SpeciesSlotParser
@@ -10,14 +10,14 @@ class SpeciesLabels : ServerPlaceholder {
     override fun handle(args: List<String>): GenericResult {
         if (args.isEmpty())
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
 
         val (species, slot) = SpeciesSlotParser.parseArgs(args)
 
         if (species == null) {
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
         }
 
@@ -25,7 +25,7 @@ class SpeciesLabels : ServerPlaceholder {
         if (slot != null) {
             if (slot <= 0) {
                 return GenericResult.valid(
-                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.labels.invalidSlot
+                    ConfigManager.CONFIG.placeholders.species.labels.invalidSlot
                 )
             }
 
@@ -33,13 +33,13 @@ class SpeciesLabels : ServerPlaceholder {
                 if (slot <= species.labels.size)
                     species.labels.toList()[slot - 1]
                 else
-                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.labels.emptySlot
+                    ConfigManager.CONFIG.placeholders.species.labels.emptySlot
             )
         }
 
         if (species.labels.isEmpty())
             return GenericResult.valid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.labels.emptyList
+                ConfigManager.CONFIG.placeholders.species.labels.emptyList
             )
 
         return GenericResult.valid(

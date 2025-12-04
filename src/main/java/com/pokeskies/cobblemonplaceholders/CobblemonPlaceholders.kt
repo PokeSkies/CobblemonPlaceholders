@@ -29,8 +29,7 @@ class CobblemonPlaceholders : ModInitializer {
         val LOGGER: Logger = LogManager.getLogger("cobblemonplaceholders")
     }
 
-    private lateinit var configDir: File
-    lateinit var configManager: ConfigManager
+    lateinit var configDir: File
 
     lateinit var adventure: FabricServerAudiences
     lateinit var server: MinecraftServer
@@ -41,7 +40,7 @@ class CobblemonPlaceholders : ModInitializer {
         INSTANCE = this
 
         this.configDir = File(FabricLoader.getInstance().configDirectory, "cobblemonplaceholders")
-        this.configManager = ConfigManager(configDir)
+        ConfigManager.init()
 
         ServerLifecycleEvents.SERVER_STARTING.register(ServerStarting { server: MinecraftServer? ->
             this.adventure = FabricServerAudiences.of(
@@ -61,7 +60,7 @@ class CobblemonPlaceholders : ModInitializer {
     }
 
     fun reload() {
-        this.configManager.reload()
+        ConfigManager.reload()
     }
 
     private fun registerPlaceholders() {

@@ -3,7 +3,7 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.pokemon.abilities.HiddenAbilityType
 import com.google.gson.annotations.SerializedName
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.Utils
@@ -13,7 +13,7 @@ class SpeciesAbilities : ServerPlaceholder {
     override fun handle(args: List<String>): GenericResult {
         if (args.isEmpty())
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
 
         val lastArgInt = args.lastOrNull()?.also {
@@ -33,7 +33,7 @@ class SpeciesAbilities : ServerPlaceholder {
                 PokemonSpecies.getByIdentifier(ResourceLocation.fromNamespaceAndPath(args[0].lowercase(), args[1].lowercase()))
             }
         } ?: return GenericResult.invalid(
-            CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+            ConfigManager.CONFIG.placeholders.species.invalidSpecies
         )
 
         if (lastArgInt != null) {
@@ -41,7 +41,7 @@ class SpeciesAbilities : ServerPlaceholder {
             if (slot != null) {
                 if (slot !in 2 downTo 1)
                     return GenericResult.invalid(
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.abilities.invalidSlot
+                        ConfigManager.CONFIG.placeholders.species.abilities.invalidSlot
                     )
 
                 val abilities = species.abilities.toList()
@@ -50,7 +50,7 @@ class SpeciesAbilities : ServerPlaceholder {
                     if (slot <= abilities.size)
                         Utils.titleCase(abilities[slot - 1].template.name)
                     else
-                        CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.abilities.emptySlot
+                        ConfigManager.CONFIG.placeholders.species.abilities.emptySlot
                 )
             } else if (lastArgInt.equals("H", true)) {
                 for (ability in species.abilities) {
@@ -59,11 +59,11 @@ class SpeciesAbilities : ServerPlaceholder {
                     }
                 }
                 return GenericResult.valid(
-                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.abilities.emptySlot
+                    ConfigManager.CONFIG.placeholders.species.abilities.emptySlot
                 )
             } else {
                 return GenericResult.invalid(
-                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.abilities.invalidSlot
+                    ConfigManager.CONFIG.placeholders.species.abilities.invalidSlot
                 )
             }
         }

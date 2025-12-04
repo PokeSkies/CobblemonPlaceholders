@@ -1,7 +1,7 @@
 package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 
 import com.google.gson.annotations.SerializedName
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.SpeciesSlotParser
@@ -11,14 +11,14 @@ class SpeciesTypes : ServerPlaceholder {
     override fun handle(args: List<String>): GenericResult {
         if (args.isEmpty())
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
 
         val (species, slot) = SpeciesSlotParser.parseArgs(args)
 
         if (species == null) {
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
         }
 
@@ -27,14 +27,14 @@ class SpeciesTypes : ServerPlaceholder {
         if (slot != null) {
             if (slot !in 2 downTo 1)
                 return GenericResult.invalid(
-                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.types.invalidSlot
+                    ConfigManager.CONFIG.placeholders.species.types.invalidSlot
                 )
 
             return GenericResult.valid(
                 if (slot <= types.size)
                     Utils.titleCase(types[slot - 1].name)
                 else
-                    CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.types.emptySlot
+                    ConfigManager.CONFIG.placeholders.species.types.emptySlot
             )
         }
 

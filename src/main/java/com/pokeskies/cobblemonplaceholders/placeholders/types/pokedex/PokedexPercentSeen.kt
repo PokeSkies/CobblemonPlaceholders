@@ -2,7 +2,7 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex
 
 import com.cobblemon.mod.common.api.pokedex.PokedexEntryProgress
 import com.google.gson.annotations.SerializedName
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.DexUtils
@@ -28,8 +28,8 @@ class PokedexPercentSeen : PlayerPlaceholder {
 
         return GenericResult.valid(Utils.parseDouble(
             (progress.toDouble() / total) * 100,
-            CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.pokedex.dexSeenPercent.fractionMin,
-            CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.pokedex.dexSeenPercent.fractionMax
+            ConfigManager.CONFIG.placeholders.pokedex.dexSeenPercent.fractionMin,
+            ConfigManager.CONFIG.placeholders.pokedex.dexSeenPercent.fractionMax
         ))
     }
 

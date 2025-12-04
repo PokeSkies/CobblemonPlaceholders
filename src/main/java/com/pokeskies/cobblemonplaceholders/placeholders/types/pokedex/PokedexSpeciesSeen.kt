@@ -2,7 +2,7 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex
 
 import com.cobblemon.mod.common.api.pokedex.PokedexEntryProgress
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.DexUtils
@@ -14,7 +14,7 @@ class PokedexSpeciesSeen : PlayerPlaceholder {
 
         val species = PokemonSpecies.getByName(args[0].lowercase())
             ?: return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.pokedex.invalidSpecies
+                ConfigManager.CONFIG.placeholders.pokedex.invalidSpecies
             )
 
         val manager = DexUtils.getDexManager(player)

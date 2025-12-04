@@ -2,7 +2,7 @@ package com.pokeskies.cobblemonplaceholders.placeholders.types.species
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
-import com.pokeskies.cobblemonplaceholders.CobblemonPlaceholders
+import com.pokeskies.cobblemonplaceholders.config.ConfigManager
 import com.pokeskies.cobblemonplaceholders.placeholders.GenericResult
 import com.pokeskies.cobblemonplaceholders.placeholders.ServerPlaceholder
 import net.minecraft.resources.ResourceLocation
@@ -11,7 +11,7 @@ class SpeciesBaseStatsAttack : ServerPlaceholder {
     override fun handle(args: List<String>): GenericResult {
         if (args.isEmpty())
             return GenericResult.invalid(
-                CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+                ConfigManager.CONFIG.placeholders.species.invalidSpecies
             )
 
         val species = if (args.size > 1) {
@@ -19,7 +19,7 @@ class SpeciesBaseStatsAttack : ServerPlaceholder {
         } else {
             PokemonSpecies.getByName(args[0].lowercase())
         } ?: return GenericResult.invalid(
-            CobblemonPlaceholders.INSTANCE.configManager.config.placeholders.species.invalidSpecies
+            ConfigManager.CONFIG.placeholders.species.invalidSpecies
         )
 
         return GenericResult.valid(species.baseStats[Stats.ATTACK] ?: 0)

@@ -10,26 +10,26 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 
 
-class ConfigManager(private val configDir: File) {
-    lateinit var config: MainConfig
+object ConfigManager {
+    lateinit var CONFIG: MainConfig
     var gson: Gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
 
-    init {
+    fun init() {
         reload()
     }
 
     fun reload() {
         copyDefaults()
-        config = loadFile("config.json", MainConfig::class.java)!!
+        CONFIG = loadFile("config.json", MainConfig::class.java)!!
     }
 
     fun copyDefaults() {
         val classLoader = CobblemonPlaceholders::class.java.classLoader
 
-        configDir.mkdirs()
+        CobblemonPlaceholders.INSTANCE.configDir.mkdirs()
 
         // Main Config
-        val configFile = configDir.resolve("config.json")
+        val configFile = CobblemonPlaceholders.INSTANCE.configDir.resolve("config.json")
         if (!configFile.exists()) {
             try {
                 val inputStream: InputStream = classLoader.getResourceAsStream("assets/cobblemonplaceholders/config.json")
@@ -41,10 +41,10 @@ class ConfigManager(private val configDir: File) {
     }
 
     fun <T : Any> loadFile(filename: String, classObject: Class<T>): T? {
-        val file = File(configDir, filename)
+        val file = File(CobblemonPlaceholders.INSTANCE.configDir, filename)
         var value: T? = null
         try {
-            Files.createDirectories(configDir.toPath())
+            Files.createDirectories(CobblemonPlaceholders.INSTANCE.configDir.toPath())
             try {
                 FileReader(file).use { reader ->
                     val jsonReader = JsonReader(reader)
@@ -60,7 +60,7 @@ class ConfigManager(private val configDir: File) {
     }
 
     fun <T> saveFile(filename: String, `object`: T) {
-        val file = File(configDir, filename)
+        val file = File(CobblemonPlaceholders.INSTANCE.configDir, filename)
         try {
             FileWriter(file).use { fileWriter ->
                 fileWriter.write(gson.toJson(`object`))

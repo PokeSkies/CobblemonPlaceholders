@@ -38,7 +38,7 @@ class PartyPropertyHas : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.propertyHas.invalidProperty
             )
 
-        return GenericResult.invalid(PokemonProperties.parse(property).matches(pokemon).toString())
+        return GenericResult.valid(PokemonProperties.parse(property).matches(pokemon))
     }
 
     override fun id(): List<String> = listOf("party_property_has")

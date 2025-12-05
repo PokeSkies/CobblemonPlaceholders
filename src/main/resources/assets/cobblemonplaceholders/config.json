@@ -33,8 +33,11 @@
       "ot_name": {
         "none": "Unknown"
       },
-      "custom_property": {
+      "property_get": {
         "invalid_key": "No Value"
+      },
+      "property_has": {
+        "invalid_property": "Invalid Property"
       }
     },
     "species": {

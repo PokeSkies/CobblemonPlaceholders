@@ -8,7 +8,7 @@ import com.pokeskies.cobblemonplaceholders.placeholders.PlayerPlaceholder
 import com.pokeskies.cobblemonplaceholders.utils.CustomPropertyType
 import net.minecraft.server.level.ServerPlayer
 
-class PartyCustomProperty : PlayerPlaceholder {
+class PartyPropertyGet : PlayerPlaceholder {
     // Args: [slot: Int (1-6), property key: String]
     override fun handle(player: ServerPlayer, args: List<String>): GenericResult {
         if (args.isEmpty())
@@ -38,20 +38,17 @@ class PartyCustomProperty : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.aspectsHas.invalidAspect
             )
 
-        println("Looking for custom property with key: $key")
-
         pokemon.customProperties.forEach { property ->
             val type = CustomPropertyType.getPropertyType(property) ?: return@forEach
-            println("Checking property of type: ${type.id(property)}")
             if (type.id(property).equals(key, true)) {
                 return GenericResult.valid(type.value(property))
             }
         }
 
-        return GenericResult.invalid(ConfigManager.CONFIG.placeholders.party.customProperty.invalidKey)
+        return GenericResult.invalid(ConfigManager.CONFIG.placeholders.party.propertyGet.invalidKey)
     }
 
-    override fun id(): List<String> = listOf("party_custom_property")
+    override fun id(): List<String> = listOf("party_property_get")
 
     class Options(
         @SerializedName("invalid_key")

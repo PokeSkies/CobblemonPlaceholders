@@ -34,13 +34,15 @@ class MainConfig(
             val otUUID: PartyOTUUID.Options = PartyOTUUID.Options(),
             @SerializedName("ot_name")
             val otName: PartyOTName.Options = PartyOTName.Options(),
-            @SerializedName("custom_property")
-            val customProperty: PartyCustomProperty.Options = PartyCustomProperty.Options(),
+            @SerializedName("property_get")
+            val propertyGet: PartyPropertyGet.Options = PartyPropertyGet.Options(),
+            @SerializedName("property_has")
+            val propertyHas: PartyPropertyHas.Options = PartyPropertyHas.Options(),
         ) {
             override fun toString(): String {
                 return "Party(invalidSlot='$invalidSlot', emptySlot='$emptySlot', aspects=$aspects, " +
                         "aspectsHas=$aspectsHas, moveset=$moveset, ivsPercent=$ivsPercent, evsPercent=$evsPercent, " +
-                        "nickname=$nickname, otUUID=$otUUID, otName=$otName)"
+                        "nickname=$nickname, otUUID=$otUUID, otName=$otName, propertyGet=$propertyGet, propertyHas=$propertyHas)"
             }
         }
 

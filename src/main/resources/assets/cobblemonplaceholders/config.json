@@ -1,4 +1,5 @@
 {
+  "unsafe": false,
   "placeholders": {
     "party": {
       "invalid_slot": "Invalid party slot argument (1-6)!",

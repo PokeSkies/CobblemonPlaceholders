@@ -7,7 +7,9 @@ import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPer
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 
 class MainConfig(
-    val placeholders: PlaceholderOptions = PlaceholderOptions()
+    var debug: Boolean = false,
+    val unsafe: Boolean = false,
+    val placeholders: PlaceholderOptions = PlaceholderOptions(),
 ) {
     class PlaceholderOptions(
         val party: Party = Party(),

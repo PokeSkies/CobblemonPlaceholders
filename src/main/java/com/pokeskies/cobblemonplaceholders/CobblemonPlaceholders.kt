@@ -21,7 +21,6 @@ import net.minecraft.server.MinecraftServer
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.io.File
-import java.util.stream.Stream
 
 class CobblemonPlaceholders : ModInitializer {
     companion object {
@@ -64,8 +63,7 @@ class CobblemonPlaceholders : ModInitializer {
     }
 
     private fun registerPlaceholders() {
-        // SERVER PLACEHOLDERS
-        Stream.of(
+        val serverPlaceholders = mutableListOf(
             SpeciesName(),
             SpeciesIDNational(),
             SpeciesTypes(),
@@ -82,11 +80,9 @@ class CobblemonPlaceholders : ModInitializer {
             SpeciesLabels(),
             SpeciesLabelsHas(),
             PokedexTotal(),
-            MolangServer(),
-        ).forEach { placeholder -> placeholderServices.forEach { it.registerServer(placeholder) } }
+        )
 
-        // PLAYER PLACEHOLDERS
-        Stream.of(
+        val playerPlaceholders = mutableListOf(
             PartyName(),
             PartySpecies(),
             PartySpeciesID(),
@@ -145,9 +141,16 @@ class CobblemonPlaceholders : ModInitializer {
             PokedexSpeciesCaught(),
             PokedexShiniesCaught(),
             PokedexShiniesSeen(),
-            MolangPlayer(),
             PCBoxCount(),
-        ).forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
+        )
+
+        if (ConfigManager.CONFIG.unsafe) {
+            serverPlaceholders.add(MolangServer())
+            playerPlaceholders.add(MolangPlayer())
+        }
+
+        serverPlaceholders.forEach { placeholder -> placeholderServices.forEach { it.registerServer(placeholder) } }
+        playerPlaceholders.forEach { placeholder -> placeholderServices.forEach { it.registerPlayer(placeholder) } }
 
         placeholderServices.forEach { it.finalizeRegister() }
     }

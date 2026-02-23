@@ -142,8 +142,8 @@ class CobblemonPlaceholders : ModInitializer {
             PokedexPercentCaught(),
             PokedexSpeciesSeen(),
             PokedexSpeciesCaught(),
-            PokedexShiniesCaught(),
-            PokedexShiniesSeen(),
+//            PokedexShiniesCaught(),
+//            PokedexShiniesSeen(),
             PCBoxCount(),
         )
 

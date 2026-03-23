@@ -3,7 +3,7 @@
 
 A Fabric server-sided MiniPlaceholders expansion for the Cobblemon mod! Includes many useful placeholders for Pokemon species and player Party Pokemon.
 
-More information on configuration can be found on the [Wiki](https://github.com/PokeSkies/CobblemonPlaceholders/wiki)!
+More information on configuration can be found on the [Wiki](https://docs.skiesdev.com/cobblemonplaceholders/getting_started/introduction/)!
 
 ## Features
 - 50+ Cobblemon Placeholders

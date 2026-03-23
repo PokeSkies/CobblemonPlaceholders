@@ -44,7 +44,7 @@ class SpeciesAbilities : ServerPlaceholder {
                         ConfigManager.CONFIG.placeholders.species.abilities.invalidSlot
                     )
 
-                val abilities = species.abilities.toList()
+                val abilities = species.abilities.toList().filter { it.type !is HiddenAbilityType }
 
                 return GenericResult.valid(
                     if (slot <= abilities.size)

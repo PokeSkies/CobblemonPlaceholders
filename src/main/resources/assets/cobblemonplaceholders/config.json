@@ -1,4 +1,5 @@
 {
+  "debug": false,
   "unsafe": false,
   "placeholders": {
     "party": {
@@ -33,6 +34,12 @@
       },
       "ot_name": {
         "none": "Unknown"
+      },
+      "property_get": {
+        "invalid_key": "No Value"
+      },
+      "property_has": {
+        "invalid_property": "Invalid Property"
       }
     },
     "species": {

@@ -45,10 +45,11 @@ class PartyPropertyHas : PlayerPlaceholder {
 
     class Options(
         @SerializedName("invalid_property")
-        val invalidProperty: String = "Invalid Property"
+        val invalidProperty: String = "Invalid Property",
+        val capitalize: Boolean = false
     ) {
         override fun toString(): String {
-            return "Options(invalidProperty='$invalidProperty')"
+            return "Options(invalidProperty='$invalidProperty', capitalize='$capitalize')"
         }
     }
 }

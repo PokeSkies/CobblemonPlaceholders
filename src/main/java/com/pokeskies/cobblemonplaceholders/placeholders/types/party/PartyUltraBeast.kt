@@ -24,8 +24,19 @@ class PartyUltraBeast : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.emptySlot
             )
 
-        return GenericResult.valid(pokemon.isUltraBeast())
+        return GenericResult.valid(
+            pokemon.isUltraBeast(),
+            ConfigManager.CONFIG.placeholders.party.ultraBeast.capitalize
+        )
     }
 
     override fun id(): List<String> = listOf("party_ultra_beast")
+
+    class Options(
+        val capitalize: Boolean = false
+    ) {
+        override fun toString(): String {
+            return "Options(capitalize='$capitalize')"
+        }
+    }
 }

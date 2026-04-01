@@ -24,8 +24,19 @@ class PartyShiny : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.emptySlot
             )
 
-        return GenericResult.valid(pokemon.shiny)
+        return GenericResult.valid(
+            pokemon.shiny,
+            ConfigManager.CONFIG.placeholders.party.shiny.capitalize
+        )
     }
 
     override fun id(): List<String> = listOf("party_shiny")
+
+    class Options(
+        val capitalize: Boolean = false
+    ) {
+        override fun toString(): String {
+            return "Options(capitalize='$capitalize')"
+        }
+    }
 }

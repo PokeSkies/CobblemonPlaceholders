@@ -37,17 +37,20 @@ class PartyAspectsHas : PlayerPlaceholder {
             )
 
         return GenericResult.valid(
-            pokemon.aspects.any { it.equals(aspect, true) }
+            pokemon.aspects.any { it.equals(aspect, true) },
+            ConfigManager.CONFIG.placeholders.party.aspectsHas.capitalize
         )
     }
 
     override fun id(): List<String> = listOf("party_aspects_has")
+
     class Options(
         @SerializedName("invalid_aspect")
-        val invalidAspect: String = "Invalid aspect argument!"
+        val invalidAspect: String = "Invalid aspect argument!",
+        val capitalize: Boolean = false
     ) {
         override fun toString(): String {
-            return "Options(invalidAspect='$invalidAspect')"
+            return "Options(invalidAspect='$invalidAspect', capitalize='$capitalize')"
         }
     }
 }

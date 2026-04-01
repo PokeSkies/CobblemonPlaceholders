@@ -24,8 +24,19 @@ class PartyGigantamax : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.emptySlot
             )
 
-        return GenericResult.valid(pokemon.gmaxFactor)
+        return GenericResult.valid(
+            pokemon.gmaxFactor,
+            ConfigManager.CONFIG.placeholders.party.gigantamax.capitalize
+        )
     }
 
     override fun id(): List<String> = listOf("party_gmax")
+
+    class Options(
+        val capitalize: Boolean = false
+    ) {
+        override fun toString(): String {
+            return "Options(capitalize='$capitalize')"
+        }
+    }
 }

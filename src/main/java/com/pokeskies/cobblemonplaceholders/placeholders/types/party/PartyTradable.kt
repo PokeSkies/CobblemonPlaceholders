@@ -24,8 +24,19 @@ class PartyTradable : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.emptySlot
             )
 
-        return GenericResult.valid(pokemon.tradeable)
+        return GenericResult.valid(
+            pokemon.tradeable,
+            ConfigManager.CONFIG.placeholders.party.tradable.capitalize
+        )
     }
 
     override fun id(): List<String> = listOf("party_tradable", "party_tradeable")
+
+    class Options(
+        val capitalize: Boolean = false
+    ) {
+        override fun toString(): String {
+            return "Options(capitalize='$capitalize')"
+        }
+    }
 }

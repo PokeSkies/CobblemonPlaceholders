@@ -11,7 +11,8 @@
         "empty_slot": "Empty Aspect"
       },
       "aspects_has": {
-        "invalid_aspect": "Invalid aspect argument!"
+        "invalid_aspect": "Invalid aspect argument!",
+        "capitalize": false
       },
       "moveset": {
         "invalid_slot": "Invalid move slot argument (1-4)!",
@@ -39,7 +40,26 @@
         "invalid_key": "No Value"
       },
       "property_has": {
-        "invalid_property": "Invalid Property"
+        "invalid_property": "Invalid Property",
+        "capitalize": false
+      },
+      "gigantamax": {
+        "capitalize": false
+      },
+      "legendary": {
+        "capitalize": false
+      },
+      "mythical": {
+        "capitalize": false
+      },
+      "shiny": {
+        "capitalize": false
+      },
+      "tradable": {
+        "capitalize": false
+      },
+      "ultra_beast": {
+        "capitalize": false
       }
     },
     "species": {
@@ -54,6 +74,15 @@
       "types": {
         "invalid_slot": "Invalid type slot argument (1-2)!",
         "empty_slot": "No Type"
+      },
+      "labels": {
+        "invalid_slot": "Invalid label slot argument (1+)!",
+        "empty_list": "No Labels",
+        "empty_slot": "Empty Label"
+      },
+      "labels_has": {
+        "invalid_format": "Invalid arguments! Species and Label required.",
+        "capitalize": false
       }
     },
     "pokedex": {
@@ -66,7 +95,13 @@
         "fraction_min": 0,
         "fraction_max": 0
       },
-      "invalid_species": "Provide a valid species argument!"
+      "invalid_species": "Provide a valid species argument!",
+      "dex_species_caught": {
+        "capitalize": false
+      },
+      "dex_species_seen": {
+        "capitalize": false
+      }
     },
     "misc": {
       "invalid_molang": "Invalid Molang expression!"

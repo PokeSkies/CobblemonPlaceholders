@@ -33,17 +33,20 @@ class SpeciesLabelsHas : ServerPlaceholder {
         }
 
         return GenericResult.valid(
-            species.labels.any { it.equals(label, true) }
+            species.labels.any { it.equals(label, true) },
+            ConfigManager.CONFIG.placeholders.species.labelsHas.capitalize
         )
     }
 
     override fun id(): List<String> = listOf("species_labels_has")
+
     class Options(
         @SerializedName("invalid_format")
-        val invalidFormat: String = "Invalid arguments! Species and Label required."
+        val invalidFormat: String = "Invalid arguments! Species and Label required.",
+        val capitalize: Boolean = false
     ) {
         override fun toString(): String {
-            return "Options(invalidFormat='$invalidFormat')"
+            return "Options(invalidFormat='$invalidFormat', capitalize='$capitalize')"
         }
     }
 }

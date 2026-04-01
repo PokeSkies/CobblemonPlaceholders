@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 import com.pokeskies.cobblemonplaceholders.placeholders.types.party.*
 import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPercentCaught
 import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexPercentSeen
+import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexSpeciesCaught
+import com.pokeskies.cobblemonplaceholders.placeholders.types.pokedex.PokedexSpeciesSeen
 import com.pokeskies.cobblemonplaceholders.placeholders.types.species.*
 
 class MainConfig(
@@ -22,7 +24,6 @@ class MainConfig(
             val invalidSlot: String = "Invalid party slot argument (1-6)!",
             @SerializedName("empty_slot")
             val emptySlot: String = "Empty Slot",
-
             val aspects: PartyAspects.Options = PartyAspects.Options(),
             @SerializedName("aspects_has")
             val aspectsHas: PartyAspectsHas.Options = PartyAspectsHas.Options(),
@@ -40,18 +41,26 @@ class MainConfig(
             val propertyGet: PartyPropertyGet.Options = PartyPropertyGet.Options(),
             @SerializedName("property_has")
             val propertyHas: PartyPropertyHas.Options = PartyPropertyHas.Options(),
+            val gigantamax: PartyGigantamax.Options = PartyGigantamax.Options(),
+            val legendary: PartyLegendary.Options = PartyLegendary.Options(),
+            val mythical: PartyMythical.Options = PartyMythical.Options(),
+            val shiny: PartyShiny.Options = PartyShiny.Options(),
+            val tradable: PartyTradable.Options = PartyTradable.Options(),
+            @SerializedName("ultra_beast")
+            val ultraBeast: PartyUltraBeast.Options = PartyUltraBeast.Options(),
         ) {
             override fun toString(): String {
                 return "Party(invalidSlot='$invalidSlot', emptySlot='$emptySlot', aspects=$aspects, " +
                         "aspectsHas=$aspectsHas, moveset=$moveset, ivsPercent=$ivsPercent, evsPercent=$evsPercent, " +
-                        "nickname=$nickname, otUUID=$otUUID, otName=$otName, propertyGet=$propertyGet, propertyHas=$propertyHas)"
+                        "nickname=$nickname, otUUID=$otUUID, otName=$otName, propertyGet=$propertyGet, propertyHas=$propertyHas, " +
+                        "gigantamax='$gigantamax', legendary='$legendary', mythical='$mythical', shiny='$shiny', tradable='$tradable', " +
+                        "ultraBeast='$ultraBeast')"
             }
         }
 
         class Species(
             @SerializedName("invalid_species")
             val invalidSpecies: String = "Provide a valid species argument!",
-
             val abilities: SpeciesAbilities.Options = SpeciesAbilities.Options(),
             val egggroups: SpeciesEggGroups.Options = SpeciesEggGroups.Options(),
             val types: SpeciesTypes.Options = SpeciesTypes.Options(),
@@ -73,10 +82,13 @@ class MainConfig(
             val dexCaughtPercent: PokedexPercentCaught.Options = PokedexPercentCaught.Options(),
             @SerializedName("invalid_species")
             val invalidSpecies: String = "Provide a valid species argument!",
-
+            val dexSpeciesCaught: PokedexSpeciesCaught.Options = PokedexSpeciesCaught.Options(),
+            val dexSpeciesSeen: PokedexSpeciesSeen.Options = PokedexSpeciesSeen.Options(),
         ) {
             override fun toString(): String {
-                return "Pokedex(includeUnimplemented=$includeUnimplemented, dexSeenPercent=$dexSeenPercent, dexCaughtPercent=$dexCaughtPercent, invalidSpecies='$invalidSpecies')"
+                return "Pokedex(includeUnimplemented=$includeUnimplemented, dexSeenPercent=$dexSeenPercent, " +
+                        "dexCaughtPercent=$dexCaughtPercent, invalidSpecies='$invalidSpecies', " +
+                        "dexSpeciesCaught='$dexSpeciesCaught', dexSpeciesSeen='$dexSpeciesSeen')"
             }
         }
 

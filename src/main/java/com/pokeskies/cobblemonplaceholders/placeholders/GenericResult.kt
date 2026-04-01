@@ -1,5 +1,6 @@
 package com.pokeskies.cobblemonplaceholders.placeholders
 
+import com.pokeskies.cobblemonplaceholders.utils.Utils
 import net.kyori.adventure.text.Component
 
 class GenericResult private constructor(
@@ -15,8 +16,8 @@ class GenericResult private constructor(
             return valid(result.toString())
         }
 
-        fun valid(result: Boolean): GenericResult {
-            return valid(result.toString())
+        fun valid(result: Boolean, capitalize: Boolean = false): GenericResult {
+            return valid(if (capitalize) Utils.titleCase(result.toString()) else result.toString())
         }
 
         fun valid(result: Float): GenericResult {

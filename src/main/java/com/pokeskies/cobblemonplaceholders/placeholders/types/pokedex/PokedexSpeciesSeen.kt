@@ -19,8 +19,19 @@ class PokedexSpeciesSeen : PlayerPlaceholder {
 
         val manager = DexUtils.getDexManager(player)
 
-        return GenericResult.valid(manager.getKnowledgeForSpecies(species.resourceIdentifier) != PokedexEntryProgress.NONE)
+        return GenericResult.valid(
+            manager.getKnowledgeForSpecies(species.resourceIdentifier) != PokedexEntryProgress.NONE,
+            ConfigManager.CONFIG.placeholders.pokedex.dexSpeciesSeen.capitalize
+        )
     }
 
     override fun id(): List<String> = listOf("pokedex_species_seen")
+
+    class Options(
+        val capitalize: Boolean = false
+    ) {
+        override fun toString(): String {
+            return "Options(capitalize='$capitalize')"
+        }
+    }
 }

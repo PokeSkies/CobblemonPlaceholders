@@ -24,8 +24,19 @@ class PartyLegendary : PlayerPlaceholder {
                 ConfigManager.CONFIG.placeholders.party.emptySlot
             )
 
-        return GenericResult.valid(pokemon.isLegendary())
+        return GenericResult.valid(
+            pokemon.isLegendary(),
+            ConfigManager.CONFIG.placeholders.party.legendary.capitalize
+        )
     }
 
     override fun id(): List<String> = listOf("party_legendary")
+
+    class Options(
+        val capitalize: Boolean = false
+    ) {
+        override fun toString(): String {
+            return "Options(capitalize='$capitalize')"
+        }
+    }
 }

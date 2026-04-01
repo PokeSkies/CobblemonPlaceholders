@@ -13,12 +13,12 @@ More information on configuration can be found on the [Wiki](https://docs.skiesd
 ## Installation
 1. Download the latest version of the mod from [Modrinth](https://modrinth.com/mod/cobblemonplaceholders).
 2. Download all required dependencies:
-- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
-- [Fabric Permissions API](https://github.com/PokeSkies/fabric-permissions-api)
-- [Cobblemon](https://modrinth.com/mod/cobblemon)
+   - [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
+   - [Fabric Permissions API](https://github.com/PokeSkies/fabric-permissions-api)
+   - [Cobblemon](https://modrinth.com/mod/cobblemon)
 3. Download one of the supported placeholder mod:
-- [MiniPlaceholders](https://modrinth.com/plugin/miniplaceholders)
-- [PlaceholderAPI](https://modrinth.com/mod/placeholder-api)
+   - [MiniPlaceholders](https://modrinth.com/plugin/miniplaceholders)
+   - [PlaceholderAPI](https://modrinth.com/mod/placeholder-api)
 4. Install the mod and dependencies into your server's `mods` folder.
 5. Configure the config file in the `./config/cobblemonplaceholders/config.json` file.
 6. Use the placeholders! See [Placeholders](https://github.com/PokeSkies/CobblemonPlaceholders/wiki/Placeholders) for more information.

@@ -20,7 +20,7 @@ class PokedexSpeciesCaught : PlayerPlaceholder {
         val manager = DexUtils.getDexManager(player)
 
         return GenericResult.valid(
-            manager.getKnowledgeForSpecies(species.resourceIdentifier) == PokedexEntryProgress.CAUGHT,
+            manager.getKnowledgeForSpecies(species.resourceIdentifier) == PokedexEntryProgress.OWNED,
             ConfigManager.CONFIG.placeholders.pokedex.dexSpeciesCaught.capitalize
         )
     }

@@ -23,7 +23,7 @@ class PokedexPercentSeen : PlayerPlaceholder {
         val progress = DexUtils.getDexProgress(
             DexUtils.getDexManager(player),
             dexID,
-            PokedexEntryProgress.ENCOUNTERED
+            PokedexEntryProgress.SEEN
         ) ?: return GenericResult.invalid("Invalid dex identifier")
 
         return GenericResult.valid(Utils.parseDouble(

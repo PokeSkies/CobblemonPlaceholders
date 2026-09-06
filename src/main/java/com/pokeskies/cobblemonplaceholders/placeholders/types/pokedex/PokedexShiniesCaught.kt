@@ -19,7 +19,7 @@ class PokedexShiniesCaught : PlayerPlaceholder {
         val total = DexUtils.getShinyDexProgress(
             DexUtils.getDexManager(player),
             dexID,
-            PokedexEntryProgress.CAUGHT
+            PokedexEntryProgress.OWNED
         ) ?: return GenericResult.invalid("Invalid dex identifier")
 
         return GenericResult.valid(total.toString())

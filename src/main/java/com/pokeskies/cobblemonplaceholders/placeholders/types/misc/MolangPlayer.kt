@@ -20,7 +20,7 @@ class MolangPlayer : PlayerPlaceholder {
             it.environment.query.addFunctions(
                 mapOf(
                     "player" to java.util.function.Function {
-                        return@Function player.asMoLangValue().addFunctions(hashMapOf())
+                        return@Function player.asMoLangValue()
                     }
                 )
             )

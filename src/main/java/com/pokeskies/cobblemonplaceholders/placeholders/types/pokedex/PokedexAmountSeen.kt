@@ -19,7 +19,7 @@ class PokedexAmountSeen : PlayerPlaceholder {
         val total = DexUtils.getDexProgress(
             DexUtils.getDexManager(player),
             dexID,
-            PokedexEntryProgress.ENCOUNTERED
+            PokedexEntryProgress.SEEN
         ) ?: return GenericResult.invalid("Invalid dex identifier")
 
         return GenericResult.valid(total.toString())
